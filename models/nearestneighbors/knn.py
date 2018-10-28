@@ -3,6 +3,7 @@ import os
 import random
 import numpy as np
 from sklearn.neighbors import KNeighborsRegressor
+from sklearn.preprocessing import OneHotEncoder
 from scipy.stats import pearsonr
 from Bio.PDB import Polypeptide
 
@@ -24,7 +25,7 @@ def one_hot(v, n=21):
 
 if __name__ == '__main__':
     if len(sys.argv) < 4:
-        print('Usage: python3 knn.py protein_list input_dir window_size')
+        print('Usage: python3 linreg.py protein_list input_dir window_size')
         exit()
 
     protein_list_file = sys.argv[1]
@@ -45,7 +46,6 @@ if __name__ == '__main__':
 
     protein_seqs = []
     protein_bvals = []
-
     for protein in protein_list:
         protein = protein.strip()
         with open(os.path.join(input_dir, protein)) as f:
@@ -60,12 +60,15 @@ if __name__ == '__main__':
     y = []
     for i in train_indices:
         for j in range(ws, len(protein_seqs[i]) - ws):
-            X.append(np.concatenate(list(map(one_hot, protein_seqs[i][j - ws:j + ws + 1]))))
-        y.extend(protein_bvals[i][ws:-ws])
+            X.append(np.array(protein_seqs[i][j - ws:j + ws + 1]))
+        y.extend(protein_bvals[i][ws:len(protein_bvals[i])-ws])
 
     X = np.vstack(X)
     y = np.array(y)
 
+    oh = OneHotEncoder()
+    oh.fit(X)
+    X = oh.transform(X)
     print("Converted to numpy array.")
     clf = KNeighborsRegressor(n_jobs=2)
     clf.fit(X, y)
@@ -75,10 +78,11 @@ if __name__ == '__main__':
     for i in validation_indices:
         X = []
         for j in range(ws, len(protein_seqs[i]) - ws):
-            X.append(np.concatenate(list(map(one_hot, protein_seqs[i][j - ws:j + ws + 1]))))
+            X.append(np.array(protein_seqs[i][j - ws:j + ws + 1]))
         X = np.vstack(X)
+        X = oh.transform(X)
         y_pred = clf.predict(X)
-        val_pccs.append(pearsonr(y_pred, protein_bvals[i][ws:-ws])[0])
+        val_pccs.append(pearsonr(y_pred, protein_bvals[i][ws:len(protein_bvals[i])-ws])[0])
 
     print("Validation Mean PCC: {}".format(sum(val_pccs) / len(val_pccs)))
 
