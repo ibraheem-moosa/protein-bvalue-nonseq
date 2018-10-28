@@ -2,7 +2,7 @@ import sys
 import os
 import random
 import numpy as np
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LassoCV
 from sklearn.preprocessing import OneHotEncoder
 from scipy.stats import pearsonr
 from Bio.PDB import Polypeptide
@@ -70,7 +70,7 @@ if __name__ == '__main__':
     oh.fit(X)
     X = oh.transform(X)
     print("Converted to numpy array.")
-    clf = LinearRegression(n_jobs=2)
+    clf = LassoCV(n_jobs=4, cv=5)
     clf.fit(X, y)
     
     print("Model fit done.")
