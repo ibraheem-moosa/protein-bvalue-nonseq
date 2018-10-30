@@ -4,6 +4,7 @@ import random
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import RobustScaler
 from scipy.stats import pearsonr
 from Bio.PDB import Polypeptide
 
@@ -16,12 +17,6 @@ def aa_to_index(aa):
         return Polypeptide.three_to_index(aa)
     else:
         return 20
-
-def one_hot(v, n=21):
-    ret = np.zeros(n)
-    ret[v] = 1
-    return ret
-
 
 if __name__ == '__main__':
     if len(sys.argv) < 4:
@@ -52,6 +47,9 @@ if __name__ == '__main__':
             lines = [l.split() for l in f]
             a = [aa_to_index(l[0]) for l in lines]
             b = [float(l[1]) for l in lines]
+            b = np.array(b)
+            scaler = RobustScaler()
+            b = scaler.fit_transform(b.reshape((-1, 1))).reshape((-1,))
             protein_seqs.append(a)
             protein_bvals.append(b)
 
@@ -70,7 +68,7 @@ if __name__ == '__main__':
     oh.fit(X)
     X = oh.transform(X)
     print("Converted to numpy array.")
-    clf = LinearRegression(n_jobs=2)
+    clf = LinearRegression()
     clf.fit(X, y)
     
     print("Model fit done.")
@@ -84,5 +82,6 @@ if __name__ == '__main__':
         y_pred = clf.predict(X)
         val_pccs.append(pearsonr(y_pred, protein_bvals[i][ws:len(protein_bvals[i])-ws])[0])
 
-    print("Validation Mean PCC: {}".format(sum(val_pccs) / len(val_pccs)))
+    val_pccs = np.array(val_pccs)
+    print("Validation Mean PCC: {} +- {}".format(val_pccs.mean(), 3 * val_pccs.std()))
 
