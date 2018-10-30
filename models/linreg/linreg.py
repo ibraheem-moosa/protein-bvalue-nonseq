@@ -6,6 +6,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import RobustScaler
 from scipy.stats import pearsonr
+from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt
 from Bio.PDB import Polypeptide
 
 def aa_to_index(aa):
@@ -45,7 +47,9 @@ if __name__ == '__main__':
         protein = protein.strip()
         with open(os.path.join(input_dir, protein)) as f:
             lines = [l.split() for l in f]
-            a = [aa_to_index(l[0]) for l in lines]
+            a = ws * [20]
+            a.extend([aa_to_index(l[0]) for l in lines])
+            a.extend(ws * [20])
             b = [float(l[1]) for l in lines]
             b = np.array(b)
             scaler = RobustScaler()
@@ -59,7 +63,7 @@ if __name__ == '__main__':
     for i in train_indices:
         for j in range(ws, len(protein_seqs[i]) - ws):
             X.append(np.array(protein_seqs[i][j - ws:j + ws + 1]))
-        y.extend(protein_bvals[i][ws:len(protein_bvals[i])-ws])
+        y.extend(protein_bvals[i])
 
     X = np.vstack(X)
     y = np.array(y)
@@ -73,6 +77,7 @@ if __name__ == '__main__':
     
     print("Model fit done.")
     val_pccs = []
+    val_mses = []
     for i in validation_indices:
         X = []
         for j in range(ws, len(protein_seqs[i]) - ws):
@@ -80,8 +85,19 @@ if __name__ == '__main__':
         X = np.vstack(X)
         X = oh.transform(X)
         y_pred = clf.predict(X)
-        val_pccs.append(pearsonr(y_pred, protein_bvals[i][ws:len(protein_bvals[i])-ws])[0])
+        val_pccs.append(pearsonr(y_pred, protein_bvals[i])[0])
+        val_mses.append(mean_squared_error(y_pred, protein_bvals[i]))
 
     val_pccs = np.array(val_pccs)
+    val_mses = np.array(val_mses)
+    plt.hist(val_pccs, density=True, range=(-0.5,1.0), bins=25)
+    plt.savefig('pcc-hist-{:02d}.png'.format(ws))
+    plt.close()
+    plt.hist(val_mses, density=True, range=(0.0, 5.0), bins=50)
+    plt.savefig('mse-hist-{:02d}.png'.format(ws))
+
     print("Validation Mean PCC: {} +- {}".format(val_pccs.mean(), 3 * val_pccs.std()))
+    print("Validation PCC: Min: {} Max: {}".format(val_pccs.min(), val_pccs.max()))
+    val_pccs_argsorted = val_pccs.argsort()
+    print("Validation PCC:\nArgMin: {}\nArgMax: {}".format(val_pccs_argsorted[:10], val_pccs_argsorted[-10:]))
 
