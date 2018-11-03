@@ -20,6 +20,57 @@ def aa_to_index(aa):
     else:
         return 20
 
+def get_pccs_and_mses(protein_seqs, protein_bvals, indices, ws, clf):
+    pccs = []
+    mses = []
+    for i in indices:
+        X = []
+        for j in range(ws, len(protein_seqs[i]) - ws):
+            X.append(np.array(protein_seqs[i][j - ws:j + ws + 1]))
+        X = np.vstack(X)
+        X = oh.transform(X)
+        y_pred = clf.predict(X)
+        pccs.append(pearsonr(y_pred, protein_bvals[i])[0])
+        mses.append(mean_squared_error(y_pred, protein_bvals[i]))
+
+    pccs = np.array(pccs)
+    mses = np.array(mses)
+    return pccs, mses
+
+def get_stats_on_pccs_and_mses(pccs, mses, prefix, ws, indices, protein_seqs, protein_bvals, protein_list):
+    lens = [len(protein_seqs[i]) - 2 * ws for i in indices]
+    bvals_mean = [protein_bvals[i].mean() for i in indices]
+    plt.hist(pccs, density=True, range=(-0.5,1.0), bins=50)
+    plt.savefig(prefix + '-pcc-hist-{:02d}.png'.format(ws))
+    plt.close()
+    plt.hist(mses, density=True, range=(0.0, 5.0), bins=50)
+    plt.savefig(prefix + '-mse-hist-{:02d}.png'.format(ws))
+    plt.close()
+    print(prefix.upper())
+    print("Mean PCC: {} +- {}".format(pccs.mean(), 3 * pccs.std()))
+    print("PCC: Min: {} Max: {}".format(pccs.min(), pccs.max()))
+    print("Mean MSE: {} +- {}".format(mses.mean(), 3 * mses.std()))
+    print("MSE: Min: {} Max: {}".format(mses.min(), mses.max()))
+ 
+    indices_sorted = sorted(enumerate(indices), key=lambda t: mses[t[0]])
+    indices_sorted = [(protein_list[t[1]],len(protein_seqs[t[1]]) - 2 * ws) for t in indices_sorted]
+    print("MSE:\nArgMin: {}\nArgMax: {}".format(indices_sorted[:10], list(reversed(indices_sorted[-10:]))))
+
+    indices_sorted = sorted(enumerate(indices), key=lambda t: pccs[t[0]])
+    indices_sorted = [(protein_list[t[1]],len(protein_seqs[t[1]]) - 2 * ws) for t in indices_sorted]
+    print("PCC:\nArgMin: {}\nArgMax: {}".format(indices_sorted[:10], list(reversed(indices_sorted[-10:]))))
+
+
+    clf = LinearRegression()
+    clf.fit(mses.reshape((-1, 1)), lens)
+    print("MSE vs Length correlation: {}".format(clf.score(mses.reshape((-1,1)), lens)))
+    clf.fit(pccs.reshape((-1, 1)), lens)
+    print("PCC vs Length correlation: {}".format(clf.score(pccs.reshape((-1,1)), lens)))
+    clf.fit(mses.reshape((-1, 1)), bvals_mean)
+    print("MSE vs b-val mean correlation: {}".format(clf.score(mses.reshape((-1,1)), bvals_mean)))
+    clf.fit(pccs.reshape((-1, 1)), bvals_mean)
+    print("PCC vs b-val mean correlation: {}".format(clf.score(pccs.reshape((-1,1)), bvals_mean)))
+ 
 if __name__ == '__main__':
     if len(sys.argv) < 4:
         print('Usage: python3 linreg.py protein_list input_dir window_size')
@@ -32,8 +83,7 @@ if __name__ == '__main__':
 
     protein_list = []
     with open(protein_list_file) as f:
-        protein_list.extend([l for l in f])
-
+        protein_list.extend([l.strip() for l in f])
 
     indices = list(range(len(protein_list)))
     random.seed(42)
@@ -74,30 +124,9 @@ if __name__ == '__main__':
     print("Converted to numpy array.")
     clf = LinearRegression()
     clf.fit(X, y)
-    
     print("Model fit done.")
-    val_pccs = []
-    val_mses = []
-    for i in validation_indices:
-        X = []
-        for j in range(ws, len(protein_seqs[i]) - ws):
-            X.append(np.array(protein_seqs[i][j - ws:j + ws + 1]))
-        X = np.vstack(X)
-        X = oh.transform(X)
-        y_pred = clf.predict(X)
-        val_pccs.append(pearsonr(y_pred, protein_bvals[i])[0])
-        val_mses.append(mean_squared_error(y_pred, protein_bvals[i]))
-
-    val_pccs = np.array(val_pccs)
-    val_mses = np.array(val_mses)
-    plt.hist(val_pccs, density=True, range=(-0.5,1.0), bins=25)
-    plt.savefig('pcc-hist-{:02d}.png'.format(ws))
-    plt.close()
-    plt.hist(val_mses, density=True, range=(0.0, 5.0), bins=50)
-    plt.savefig('mse-hist-{:02d}.png'.format(ws))
-
-    print("Validation Mean PCC: {} +- {}".format(val_pccs.mean(), 3 * val_pccs.std()))
-    print("Validation PCC: Min: {} Max: {}".format(val_pccs.min(), val_pccs.max()))
-    val_pccs_argsorted = val_pccs.argsort()
-    print("Validation PCC:\nArgMin: {}\nArgMax: {}".format(val_pccs_argsorted[:10], val_pccs_argsorted[-10:]))
+    train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, train_indices, ws, clf)
+    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, validation_indices, ws, clf)
+    get_stats_on_pccs_and_mses(train_pccs, train_mses, 'train', ws, train_indices, protein_seqs, protein_bvals, protein_list)
+    get_stats_on_pccs_and_mses(val_pccs, val_mses, 'val', ws, validation_indices, protein_seqs, protein_bvals, protein_list)
 
