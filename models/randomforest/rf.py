@@ -124,7 +124,7 @@ if __name__ == '__main__':
     #X = oh.transform(X)
     print("Converted to numpy array.")
 
-    clf = RandomForestRegressor(max_features='sqrt', max_depth=3, n_estimators=10)
+    clf = RandomForestRegressor(max_features='sqrt', max_depth=4, n_estimators=100, verbose=1)
     clf.fit(X, y)
     print("Model fit done.")
     train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, train_indices, ws, clf)

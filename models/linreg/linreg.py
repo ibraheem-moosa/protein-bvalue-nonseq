@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import RobustScaler
+from sklearn.preprocessing import StandardScaler
 from scipy.stats import pearsonr
 from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
@@ -20,7 +21,7 @@ def aa_to_index(aa):
     else:
         return 20
 
-def get_pccs_and_mses(protein_seqs, protein_bvals, indices, ws, clf):
+def get_pccs_and_mses(protein_seqs, protein_bvals, indices, ws, clf, oh):
     pccs = []
     mses = []
     for i in indices:
@@ -104,6 +105,7 @@ if __name__ == '__main__':
             b = np.array(b)
             scaler = RobustScaler()
             b = scaler.fit_transform(b.reshape((-1, 1))).reshape((-1,))
+            b = b.clip(min=-2.0, max=2.0)
             protein_seqs.append(a)
             protein_bvals.append(b)
 
@@ -124,9 +126,10 @@ if __name__ == '__main__':
     print("Converted to numpy array.")
     clf = LinearRegression()
     clf.fit(X, y)
+    print(clf.score(X, y))
     print("Model fit done.")
-    train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, train_indices, ws, clf)
-    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, validation_indices, ws, clf)
+    train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, train_indices, ws, clf, oh)
+    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, validation_indices, ws, clf, oh)
     get_stats_on_pccs_and_mses(train_pccs, train_mses, 'train', ws, train_indices, protein_seqs, protein_bvals, protein_list)
     get_stats_on_pccs_and_mses(val_pccs, val_mses, 'val', ws, validation_indices, protein_seqs, protein_bvals, protein_list)
 
