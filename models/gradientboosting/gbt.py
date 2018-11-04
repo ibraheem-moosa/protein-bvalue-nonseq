@@ -6,6 +6,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import RobustScaler
+from sklearn.preprocessing import StandardScaler
 from scipy.stats import pearsonr
 from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
@@ -119,12 +120,12 @@ if __name__ == '__main__':
     X = np.vstack(X)
     y = np.array(y)
 
-    #oh = OneHotEncoder()
-    #oh.fit(X)
-    #X = oh.transform(X)
+    oh = OneHotEncoder()
+    oh.fit(X)
+    X_oh = oh.transform(X)
     print("Converted to numpy array.")
 
-    clf = GradientBoostingRegressor(max_features='sqrt', verbose=2, n_estimators=1000)
+    clf = GradientBoostingRegressor(max_features='sqrt', verbose=1, n_estimators=1250, learning_rate=0.8, loss='huber')
     clf.fit(X, y)
     print("Model fit done.")
     train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, train_indices, ws, clf)

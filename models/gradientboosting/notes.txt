@@ -1,1 +1,3 @@
-At ws=15 and b-value robustly scaled learning rate=0.8 gives good performance
+At ws=15 and b-value robustly scaled learning rate=0.8 gives good performance, about 0.461 ~ 0.462
+With huber loss the performance is better (0.4658)
+Let's try sending the output of a linear regressor to gbt. This didn't give better results.
