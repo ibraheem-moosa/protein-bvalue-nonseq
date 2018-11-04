@@ -1,0 +1,1 @@
+At ws=15 and b-value robustly scaled learning rate=0.8 gives good performance
