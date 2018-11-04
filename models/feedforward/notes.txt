@@ -1,0 +1,12 @@
+Got good results(0.4685) with feedforward nn of width 8, number of hidden layers 8, window size 15, learning rate 0.01 and alpha 0.1. 
+Then got severe overfitting after changing width to 32.
+Maybe increasing alpha will stop overfitting.
+Changing alpha to 1.0.
+It now learns to predict constant value. PCC calculations fail due to divide by zero.
+Okay maybe we can train with early stopping.
+Making early stopping true and setting alpha back to 0.1.
+Early stopping shows how badly validation score drops with each iteration.
+Going back to width 8 and run with early stopping.
+There is probably a threshold in scikit-learn that tell when to use all the cpus.
+For example with width 8 only one cpu is used while with 32 all the cpus were used.
+This stopped training at epoch 93 instead of 111 and gave PCC of 0.4728.
