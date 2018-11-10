@@ -3,8 +3,7 @@ import os
 import random
 import numpy as np
 from sklearn.linear_model import LinearRegression
-from sklearn.neural_network import MLPRegressor
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.tree import DecisionTreeRegressor
 from sklearn.preprocessing import RobustScaler
 from sklearn.preprocessing import StandardScaler
 from scipy.stats import pearsonr
@@ -22,7 +21,7 @@ def aa_to_index(aa):
     else:
         return 20
 
-def get_pccs_and_mses(protein_seqs, protein_bvals, indices, ws, clf, oh):
+def get_pccs_and_mses(protein_seqs, protein_bvals, indices, ws, clf):
     pccs = []
     mses = []
     for i in indices:
@@ -30,7 +29,7 @@ def get_pccs_and_mses(protein_seqs, protein_bvals, indices, ws, clf, oh):
         for j in range(ws, len(protein_seqs[i]) - ws):
             X.append(np.array(protein_seqs[i][j - ws:j + ws + 1]))
         X = np.vstack(X)
-        X = oh.transform(X)
+        #X = oh.transform(X)
         y_pred = clf.predict(X)
         pccs.append(pearsonr(y_pred, protein_bvals[i])[0])
         mses.append(mean_squared_error(y_pred, protein_bvals[i]))
@@ -104,7 +103,7 @@ if __name__ == '__main__':
             a.extend(ws * [20])
             b = [float(l[1]) for l in lines]
             b = np.array(b)
-            scaler = RobustScaler()
+            scaler = StandardScaler()
             b = scaler.fit_transform(b.reshape((-1, 1))).reshape((-1,))
             protein_seqs.append(a)
             protein_bvals.append(b)
@@ -120,20 +119,13 @@ if __name__ == '__main__':
     X = np.vstack(X)
     y = np.array(y)
 
-    oh = OneHotEncoder()
-    oh.fit(X)
-    X = oh.transform(X)
-    print("Converted to numpy array of shape {}.".format(X.shape))
+    print("Converted to numpy array.")
 
-    width = 8
-    n_layers = 8
-    hidden_layer_sizes = tuple([width] * n_layers)
-    clf = MLPRegressor(verbose=True, solver='sgd', learning_rate='adaptive', learning_rate_init=0.01,
-            alpha=0.1, hidden_layer_sizes=hidden_layer_sizes, early_stopping=True)
+    clf = DecisionTreeRegressor(max_depth=3, random_state=42)
     clf.fit(X, y)
     print("Model fit done.")
-    train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, train_indices, ws, clf, oh)
-    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, validation_indices, ws, clf, oh)
+    train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, train_indices, ws, clf)
+    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, validation_indices, ws, clf)
     get_stats_on_pccs_and_mses(train_pccs, train_mses, 'train', ws, train_indices, protein_seqs, protein_bvals, protein_list)
     get_stats_on_pccs_and_mses(val_pccs, val_mses, 'val', ws, validation_indices, protein_seqs, protein_bvals, protein_list)
 

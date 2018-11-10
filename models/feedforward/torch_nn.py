@@ -16,15 +16,17 @@ from torch import nn
 from torch.nn.functional import relu
 from torch.nn.functional import dropout
 from torch.optim import SGD
+from torch.optim import Adam
 from skorch.regressor import NeuralNetRegressor
 
 class FWFNN(nn.Module):
-    def __init__(self, width, num_inputs, num_outputs, num_layers, activation):
+    def __init__(self, width, num_inputs, num_outputs, num_layers, activation, dropout=None):
         super(FWFNN, self).__init__()
         self.input_layer = nn.Linear(num_inputs, width)
         self.linear_layers = [nn.Linear(width, width) for i in range(num_layers)]
         self.output_layer = nn.Linear(width, num_outputs)
         self.activation = activation
+        self.dropout = dropout
         self.register_parameter('FFi' + '_weight_', self.input_layer.weight)
         self.register_parameter('FFi' + '_bias_', self.input_layer.bias)
         for i in range(num_layers):
@@ -35,8 +37,12 @@ class FWFNN(nn.Module):
 
     def forward(self, x):
         out = self.activation(self.input_layer(x))
+        if self.dropout != None:
+            out = self.dropout(out)
         for i in range(len(self.linear_layers)):
             out = self.activation(self.linear_layers[i](out))
+            if self.dropout != None:
+                out = self.dropout(out)
         out = self.output_layer(out)
         return out
 
@@ -159,8 +165,8 @@ if __name__ == '__main__':
     n_layers = 8
     n_inputs = (2 * ws + 1) * 21
     net = NeuralNetRegressor(module=FWFNN, module__width=width, module__num_inputs=n_inputs,
-            module__num_outputs=1, module__num_layers=n_layers, module__activation=relu,
-            criterion=nn.MSELoss, lr=1e-5, optimizer=SGD, max_epochs=200, batch_size=256, train_split=None, verbose=2)
+            module__num_outputs=1, module__num_layers=n_layers, module__activation=relu, module__dropout=None,
+            criterion=nn.MSELoss, lr=1e-4, optimizer=Adam, max_epochs=150, batch_size=256, verbose=2)
     net.fit(X, y)
     print("Model fit done.")
     train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, train_indices, ws, net, oh)
