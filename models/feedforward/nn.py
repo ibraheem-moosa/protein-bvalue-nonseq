@@ -2,8 +2,8 @@ import sys
 import os
 import random
 import numpy as np
-from sklearn.linear_model import LinearRegression
 from sklearn.neural_network import MLPRegressor
+from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import RobustScaler
 from sklearn.preprocessing import StandardScaler
@@ -104,8 +104,9 @@ if __name__ == '__main__':
             a.extend(ws * [20])
             b = [float(l[1]) for l in lines]
             b = np.array(b)
-            scaler = RobustScaler()
+            scaler = StandardScaler()
             b = scaler.fit_transform(b.reshape((-1, 1))).reshape((-1,))
+            #b = b.clip(min=-2.0, max=2.0)
             protein_seqs.append(a)
             protein_bvals.append(b)
 
@@ -123,15 +124,26 @@ if __name__ == '__main__':
     oh = OneHotEncoder()
     oh.fit(X)
     X = oh.transform(X)
-    print("Converted to numpy array of shape {}.".format(X.shape))
-
-    width = 8
-    n_layers = 8
+    print("Converted to numpy array.")
+    width = 4
+    n_layers = 2
     hidden_layer_sizes = tuple([width] * n_layers)
-    clf = MLPRegressor(verbose=True, solver='sgd', learning_rate='adaptive', learning_rate_init=0.01,
-            alpha=0.1, hidden_layer_sizes=hidden_layer_sizes, early_stopping=True)
+    clf = MLPRegressor(verbose=True, solver='sgd', learning_rate='adaptive', learning_rate_init=0.1,
+            alpha=0.1, hidden_layer_sizes=hidden_layer_sizes, early_stopping=True, max_iter=100, batch_size=512)
     clf.fit(X, y)
     print("Model fit done.")
+    print(clf.score(X, y))
+    w = list(clf.coefs_)
+    w[0] = w[0].transpose()
+    w[0] = w[0].reshape((width, -1, 21))
+    w[0] = np.linalg.norm(w[0], axis=2)
+    print(w[0].shape)
+    print(w[1].shape)
+    #w[0] = w[0].reshape((-1, 21))
+    #w[0] = np.linalg.norm(w[0], axis=1)
+    b = clf.intercepts_
+    print(w)
+    print(b)
     train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, train_indices, ws, clf, oh)
     val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, validation_indices, ws, clf, oh)
     get_stats_on_pccs_and_mses(train_pccs, train_mses, 'train', ws, train_indices, protein_seqs, protein_bvals, protein_list)
