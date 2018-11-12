@@ -2,7 +2,9 @@ import sys
 import os
 import random
 import numpy as np
+from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import RobustScaler
@@ -11,6 +13,8 @@ from scipy.stats import pearsonr
 from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
 from Bio.PDB import Polypeptide
+import pandas as pd
+from sklearn.impute import SimpleImputer
 
 def aa_to_index(aa):
     """
@@ -22,14 +26,18 @@ def aa_to_index(aa):
     else:
         return 20
 
-def get_pccs_and_mses(protein_seqs, protein_bvals, indices, ws, clf):
+def get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, indices, ws, clf, oh, imp, use_metadata=False):
     pccs = []
     mses = []
     for i in indices:
         X = []
         for j in range(ws, len(protein_seqs[i]) - ws):
-            X.append(np.array(protein_seqs[i][j - ws:j + ws + 1]))
+            if use_metadata:
+                X.append(np.hstack([np.array(protein_seqs[i][j - ws:j + ws + 1]), protein_mdatas[i]]))
+            else:
+                X.append(np.array(protein_seqs[i][j - ws:j + ws + 1]))
         X = np.vstack(X)
+        X = imp.transform(X)
         #X = oh.transform(X)
         y_pred = clf.predict(X)
         pccs.append(pearsonr(y_pred, protein_bvals[i])[0])
@@ -72,20 +80,65 @@ def get_stats_on_pccs_and_mses(pccs, mses, prefix, ws, indices, protein_seqs, pr
     print("MSE vs b-val mean correlation: {}".format(clf.score(mses.reshape((-1,1)), bvals_mean)))
     clf.fit(pccs.reshape((-1, 1)), bvals_mean)
     print("PCC vs b-val mean correlation: {}".format(clf.score(pccs.reshape((-1,1)), bvals_mean)))
+
+
+class MyLinearRegression(BaseEstimator, RegressorMixin):
+    
+    def __init__(self, oh):
+        self.oh = oh
+        self.linreg = LinearRegression()
+
+    def fit(self, X, y, sample_weight=None):
+        X = oh.fit_transform(X)
+        self.linreg.fit(X, y, sample_weight)
+        print(self.linreg.score(X, y))
+        return self
+
+    def predict(self, X):
+        X = oh.transform(X)
+        y = self.linreg.predict(X)
+        return y.reshape((-1,1))
+
  
 if __name__ == '__main__':
-    if len(sys.argv) < 4:
-        print('Usage: python3 linreg.py protein_list input_dir window_size')
+    if len(sys.argv) < 5:
+        print('Usage: python3 linreg.py protein_list input_dir protein_metadata window_size')
         exit()
+
+    use_metadata = False
+    use_metadata = True
 
     protein_list_file = sys.argv[1]
     input_dir = sys.argv[2]
     #output_dir = sys.argv[3]
-    ws = int(sys.argv[3])
+    protein_metadata = sys.argv[3]
+    ws = int(sys.argv[4])
 
     protein_list = []
     with open(protein_list_file) as f:
         protein_list.extend([l.strip() for l in f])
+
+    protein_metadata = pd.read_csv(protein_metadata, parse_dates=[1,11], na_values=['.'])
+    protein_metadata = protein_metadata.dropna(axis=1, thresh=protein_metadata.shape[0] - 1500)
+    protein_metadata = protein_metadata[['protein', #'_entity_src_gen.pdbx_gene_src_ncbi_taxonomy_id ', #'_entity_src_gen.pdbx_host_org_ncbi_taxonomy_id ', 
+        '_exptl_crystal_grow.pH ', '_exptl_crystal_grow.temp ', '_exptl_crystal.density_percent_sol ', '_exptl_crystal.density_Matthews ',
+        '_diffrn.ambient_temp ',
+        #'_refine_hist.d_res_low ', '_refine_hist.d_res_high ',
+        #'_refine.ls_d_res_high ', '_refine.ls_d_res_low ',
+        '_reflns.d_resolution_low ', '_reflns.d_resolution_high ',
+        '_refine.ls_R_factor_R_free ',
+        '_refine.ls_R_factor_obs ',
+        '_refine.ls_R_factor_R_work ',
+        '_reflns.pdbx_redundancy ',
+        '_refine_hist.pdbx_number_atoms_protein ', '_refine_hist.pdbx_number_atoms_ligand ', '_refine_hist.number_atoms_solvent '
+        ]]
+    protein_metadata['_refine_hist.number_atoms_total'] = protein_metadata['_refine_hist.number_atoms_solvent '] + protein_metadata['_refine_hist.pdbx_number_atoms_ligand '] + protein_metadata['_refine_hist.pdbx_number_atoms_protein ']
+    protein_metadata['_refine_hist.pdbx_number_atoms_protein '] /= protein_metadata['_refine_hist.number_atoms_total']
+    protein_metadata['_refine_hist.pdbx_number_atoms_ligand '] /= protein_metadata['_refine_hist.number_atoms_total']
+    protein_metadata['_refine_hist.number_atoms_solvent '] /= protein_metadata['_refine_hist.number_atoms_total']
+    protein_metadata.drop('_refine_hist.number_atoms_total', axis=1, inplace=True)
+    print(protein_metadata.select_dtypes(include=np.number).keys())
+    num_of_mdatas = protein_metadata.shape[1] - 2
 
     indices = list(range(len(protein_list)))
     random.seed(42)
@@ -95,8 +148,12 @@ if __name__ == '__main__':
 
     protein_seqs = []
     protein_bvals = []
+    protein_mdatas = []
     for protein in protein_list:
         protein = protein.strip()
+        metadata = protein_metadata[protein_metadata['protein'] == protein].select_dtypes(include=np.number)
+        metadata = metadata.values[0]
+        protein_mdatas.append(metadata)
         with open(os.path.join(input_dir, protein)) as f:
             lines = [l.split() for l in f]
             a = ws * [20]
@@ -104,8 +161,9 @@ if __name__ == '__main__':
             a.extend(ws * [20])
             b = [float(l[1]) for l in lines]
             b = np.array(b)
-            scaler = RobustScaler()
+            scaler = StandardScaler()
             b = scaler.fit_transform(b.reshape((-1, 1))).reshape((-1,))
+            #b = b.clip(min=-2.0, max=2.0)
             protein_seqs.append(a)
             protein_bvals.append(b)
 
@@ -114,22 +172,42 @@ if __name__ == '__main__':
     y = []
     for i in train_indices:
         for j in range(ws, len(protein_seqs[i]) - ws):
-            X.append(np.array(protein_seqs[i][j - ws:j + ws + 1]))
+            if use_metadata:
+                X.append(np.hstack([np.array(protein_seqs[i][j - ws:j + ws + 1]), protein_mdatas[i]]))
+            else:
+                X.append(np.array(protein_seqs[i][j - ws:j + ws + 1]))
         y.extend(protein_bvals[i])
 
     X = np.vstack(X)
     y = np.array(y)
 
-    oh = OneHotEncoder()
-    oh.fit(X)
-    X_oh = oh.transform(X)
-    print("Converted to numpy array.")
+    imp = SimpleImputer(strategy='most_frequent')
+    imp.fit(X)
+    X = imp.transform(X)
 
-    clf = GradientBoostingRegressor(max_features='sqrt', verbose=1, n_estimators=1250, learning_rate=0.8, loss='huber')
+    categorical_features=list(range(2 * ws + 1))
+    if use_metadata:
+        #categorical_features.append(2 * ws + 1 + 0)
+        #categorical_features.append(2 * ws + 1 + 1)
+        pass
+    print(X.shape)
+    oh = OneHotEncoder(categorical_features=categorical_features)
+#    oh.fit(X)
+#    X = oh.transform(X)
+    print(X.shape)
+    print("Converted to numpy array.")
+    init_linreg = MyLinearRegression(oh)
+    clf = GradientBoostingRegressor(max_features=None, 
+            init = init_linreg, max_depth=5, verbose=5, n_estimators=500, learning_rate=0.1, loss='ls', n_iter_no_change=5)
     clf.fit(X, y)
     print("Model fit done.")
-    train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, train_indices, ws, clf)
-    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, validation_indices, ws, clf)
+    print(clf.score(X, y))
+    fi = clf.feature_importances_
+    fi /= fi.max()
+    print(fi)
+ 
+    train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, train_indices, ws, clf, oh, imp, use_metadata)
+    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, validation_indices, ws, clf, oh, imp, use_metadata)
     get_stats_on_pccs_and_mses(train_pccs, train_mses, 'train', ws, train_indices, protein_seqs, protein_bvals, protein_list)
     get_stats_on_pccs_and_mses(val_pccs, val_mses, 'val', ws, validation_indices, protein_seqs, protein_bvals, protein_list)
 
