@@ -47,12 +47,14 @@ def get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, indices, ws, 
 def get_stats_on_pccs_and_mses(pccs, mses, prefix, ws, indices, protein_seqs, protein_bvals, protein_list):
     lens = [len(protein_seqs[i]) - 2 * ws for i in indices]
     bvals_mean = [protein_bvals[i].mean() for i in indices]
+    '''
     plt.hist(pccs, density=True, range=(-0.5,1.0), bins=50)
     plt.savefig(prefix + '-pcc-hist-{:02d}.png'.format(ws))
     plt.close()
     plt.hist(mses, density=True, range=(0.0, 5.0), bins=50)
     plt.savefig(prefix + '-mse-hist-{:02d}.png'.format(ws))
     plt.close()
+    '''
     print(prefix.upper())
     print("Mean PCC: {} +- {}".format(pccs.mean(), 3 * pccs.std()))
     print("PCC: Min: {} Max: {}".format(pccs.min(), pccs.max()))
@@ -84,13 +86,14 @@ if __name__ == '__main__':
         exit()
 
     use_metadata = False
-    use_metadata = True
+    #use_metadata = True
 
     protein_list_file = sys.argv[1]
     input_dir = sys.argv[2]
     #output_dir = sys.argv[3]
     protein_metadata = sys.argv[3]
     ws = int(sys.argv[4])
+    print(ws)
 
     protein_list = []
     with open(protein_list_file) as f:
@@ -115,14 +118,16 @@ if __name__ == '__main__':
     protein_metadata['_refine_hist.pdbx_number_atoms_ligand '] /= protein_metadata['_refine_hist.number_atoms_total']
     protein_metadata['_refine_hist.number_atoms_solvent '] /= protein_metadata['_refine_hist.number_atoms_total']
     protein_metadata.drop('_refine_hist.number_atoms_total', axis=1, inplace=True)
-    print(protein_metadata.select_dtypes(include=np.number).keys())
+    #print(protein_metadata.select_dtypes(include=np.number).keys())
     num_of_mdatas = protein_metadata.shape[1] - 2
 
     indices = list(range(len(protein_list)))
     random.seed(42)
     random.shuffle(indices)
     train_indices = indices[:int(0.8 * len(indices))]
-    validation_indices = indices[int(0.8 * len(indices)):]
+    val_indices = train_indices[int(0.8 * len(train_indices)):]
+    train_indices = train_indices[:int(0.8 * len(train_indices))]
+    test_indices = indices[int(0.8 * len(indices)):]
 
     protein_seqs = []
     protein_bvals = []
@@ -177,7 +182,7 @@ if __name__ == '__main__':
     clf = LinearRegression()
     clf.fit(X, y)
     print("Model fit done.")
-    print(clf.score(X, y))
+    #print(clf.score(X, y))
     w = clf.coef_
     b = clf.intercept_
     if use_metadata:
@@ -193,7 +198,9 @@ if __name__ == '__main__':
         print(w)
         print(b)
     train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, train_indices, ws, clf, oh, imp, use_metadata)
-    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, validation_indices, ws, clf, oh, imp, use_metadata)
+    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, val_indices, ws, clf, oh, imp, use_metadata)
+    test_pccs, test_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, test_indices, ws, clf, oh, imp, use_metadata)
     get_stats_on_pccs_and_mses(train_pccs, train_mses, 'train', ws, train_indices, protein_seqs, protein_bvals, protein_list)
-    get_stats_on_pccs_and_mses(val_pccs, val_mses, 'val', ws, validation_indices, protein_seqs, protein_bvals, protein_list)
+    get_stats_on_pccs_and_mses(val_pccs, val_mses, 'val', ws, val_indices, protein_seqs, protein_bvals, protein_list)
+    get_stats_on_pccs_and_mses(test_pccs, test_mses, 'test', ws, test_indices, protein_seqs, protein_bvals, protein_list)
 
