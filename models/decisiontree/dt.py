@@ -63,6 +63,10 @@ def get_stats_on_pccs_and_mses(pccs, mses, prefix, ws, indices, protein_seqs, pr
 
 
     clf = LinearRegression()
+    clf.fit(mses.reshape((-1, 1)), pccs)
+    print("MSE vs PCC correlation: {}".format(clf.score(mses.reshape((-1,1)), pccs)))
+    print(clf.coef_)
+    print(clf.intercept_)
     clf.fit(mses.reshape((-1, 1)), lens)
     print("MSE vs Length correlation: {}".format(clf.score(mses.reshape((-1,1)), lens)))
     clf.fit(pccs.reshape((-1, 1)), lens)
@@ -90,7 +94,9 @@ if __name__ == '__main__':
     random.seed(42)
     random.shuffle(indices)
     train_indices = indices[:int(0.8 * len(indices))]
-    validation_indices = indices[int(0.8 * len(indices)):]
+    val_indices = train_indices[int(0.8 * len(train_indices)):]
+    train_indices = train_indices[:int(0.8 * len(train_indices))]
+    test_indices = indices[int(0.8 * len(indices)):]
 
     protein_seqs = []
     protein_bvals = []
@@ -121,11 +127,16 @@ if __name__ == '__main__':
 
     print("Converted to numpy array.")
 
-    clf = DecisionTreeRegressor(max_depth=3, random_state=42)
+    clf = DecisionTreeRegressor(max_depth=10, random_state=42)
     clf.fit(X, y)
     print("Model fit done.")
+    fi = clf.feature_importances_
+    fi /= fi.max()
+    print(fi)
     train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, train_indices, ws, clf)
-    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, validation_indices, ws, clf)
+    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, val_indices, ws, clf)
+    test_pccs, test_mses = get_pccs_and_mses(protein_seqs, protein_bvals, test_indices, ws, clf)
     get_stats_on_pccs_and_mses(train_pccs, train_mses, 'train', ws, train_indices, protein_seqs, protein_bvals, protein_list)
-    get_stats_on_pccs_and_mses(val_pccs, val_mses, 'val', ws, validation_indices, protein_seqs, protein_bvals, protein_list)
+    get_stats_on_pccs_and_mses(val_pccs, val_mses, 'val', ws, val_indices, protein_seqs, protein_bvals, protein_list)
+    get_stats_on_pccs_and_mses(test_pccs, test_mses, 'test', ws, test_indices, protein_seqs, protein_bvals, protein_list)
 

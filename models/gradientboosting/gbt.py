@@ -2,9 +2,7 @@ import sys
 import os
 import random
 import numpy as np
-from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.linear_model import LinearRegression
-from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import RobustScaler
@@ -26,7 +24,7 @@ def aa_to_index(aa):
     else:
         return 20
 
-def get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, indices, ws, clf, oh, imp, use_metadata=False):
+def get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, indices, ws,  gbt, oh, imp, use_metadata=False):
     pccs = []
     mses = []
     for i in indices:
@@ -38,8 +36,7 @@ def get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, indices, ws, 
                 X.append(np.array(protein_seqs[i][j - ws:j + ws + 1]))
         X = np.vstack(X)
         X = imp.transform(X)
-        #X = oh.transform(X)
-        y_pred = clf.predict(X)
+        y_pred = gbt.predict(X)
         pccs.append(pearsonr(y_pred, protein_bvals[i])[0])
         mses.append(mean_squared_error(y_pred, protein_bvals[i]))
 
@@ -50,12 +47,14 @@ def get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, indices, ws, 
 def get_stats_on_pccs_and_mses(pccs, mses, prefix, ws, indices, protein_seqs, protein_bvals, protein_list):
     lens = [len(protein_seqs[i]) - 2 * ws for i in indices]
     bvals_mean = [protein_bvals[i].mean() for i in indices]
+    '''
     plt.hist(pccs, density=True, range=(-0.5,1.0), bins=50)
     plt.savefig(prefix + '-pcc-hist-{:02d}.png'.format(ws))
     plt.close()
     plt.hist(mses, density=True, range=(0.0, 5.0), bins=50)
     plt.savefig(prefix + '-mse-hist-{:02d}.png'.format(ws))
     plt.close()
+    '''
     print(prefix.upper())
     print("Mean PCC: {} +- {}".format(pccs.mean(), 3 * pccs.std()))
     print("PCC: Min: {} Max: {}".format(pccs.min(), pccs.max()))
@@ -80,25 +79,6 @@ def get_stats_on_pccs_and_mses(pccs, mses, prefix, ws, indices, protein_seqs, pr
     print("MSE vs b-val mean correlation: {}".format(clf.score(mses.reshape((-1,1)), bvals_mean)))
     clf.fit(pccs.reshape((-1, 1)), bvals_mean)
     print("PCC vs b-val mean correlation: {}".format(clf.score(pccs.reshape((-1,1)), bvals_mean)))
-
-
-class MyLinearRegression(BaseEstimator, RegressorMixin):
-    
-    def __init__(self, oh):
-        self.oh = oh
-        self.linreg = LinearRegression()
-
-    def fit(self, X, y, sample_weight=None):
-        X = oh.fit_transform(X)
-        self.linreg.fit(X, y, sample_weight)
-        print(self.linreg.score(X, y))
-        return self
-
-    def predict(self, X):
-        X = oh.transform(X)
-        y = self.linreg.predict(X)
-        return y.reshape((-1,1))
-
  
 if __name__ == '__main__':
     if len(sys.argv) < 5:
@@ -106,13 +86,14 @@ if __name__ == '__main__':
         exit()
 
     use_metadata = False
-    use_metadata = True
+    #use_metadata = True
 
     protein_list_file = sys.argv[1]
     input_dir = sys.argv[2]
     #output_dir = sys.argv[3]
     protein_metadata = sys.argv[3]
     ws = int(sys.argv[4])
+    print(ws)
 
     protein_list = []
     with open(protein_list_file) as f:
@@ -137,14 +118,16 @@ if __name__ == '__main__':
     protein_metadata['_refine_hist.pdbx_number_atoms_ligand '] /= protein_metadata['_refine_hist.number_atoms_total']
     protein_metadata['_refine_hist.number_atoms_solvent '] /= protein_metadata['_refine_hist.number_atoms_total']
     protein_metadata.drop('_refine_hist.number_atoms_total', axis=1, inplace=True)
-    print(protein_metadata.select_dtypes(include=np.number).keys())
+    #print(protein_metadata.select_dtypes(include=np.number).keys())
     num_of_mdatas = protein_metadata.shape[1] - 2
 
     indices = list(range(len(protein_list)))
     random.seed(42)
     random.shuffle(indices)
     train_indices = indices[:int(0.8 * len(indices))]
-    validation_indices = indices[int(0.8 * len(indices)):]
+    val_indices = train_indices[int(0.8 * len(train_indices)):]
+    train_indices = train_indices[:int(0.8 * len(train_indices))]
+    test_indices = indices[int(0.8 * len(indices)):]
 
     protein_seqs = []
     protein_bvals = []
@@ -192,22 +175,17 @@ if __name__ == '__main__':
         pass
     print(X.shape)
     oh = OneHotEncoder(categorical_features=categorical_features)
-#    oh.fit(X)
-#    X = oh.transform(X)
-    print(X.shape)
     print("Converted to numpy array.")
-    init_linreg = MyLinearRegression(oh)
-    clf = GradientBoostingRegressor(max_features=None, 
-            init = init_linreg, max_depth=5, verbose=5, n_estimators=500, learning_rate=0.1, loss='ls', n_iter_no_change=5)
-    clf.fit(X, y)
+    gbt = GradientBoostingRegressor(max_depth=3, random_state=42, n_estimators=100)
+    gbt.fit(X, y)
     print("Model fit done.")
-    print(clf.score(X, y))
-    fi = clf.feature_importances_
-    fi /= fi.max()
+    fi = gbt.feature_importances_
+    fi /= max(fi)
     print(fi)
- 
-    train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, train_indices, ws, clf, oh, imp, use_metadata)
-    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, validation_indices, ws, clf, oh, imp, use_metadata)
+    train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, train_indices, ws,  gbt, oh, imp, use_metadata)
+    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, val_indices, ws,  gbt, oh, imp, use_metadata)
+    test_pccs, test_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, test_indices, ws,  gbt, oh, imp, use_metadata)
     get_stats_on_pccs_and_mses(train_pccs, train_mses, 'train', ws, train_indices, protein_seqs, protein_bvals, protein_list)
-    get_stats_on_pccs_and_mses(val_pccs, val_mses, 'val', ws, validation_indices, protein_seqs, protein_bvals, protein_list)
+    get_stats_on_pccs_and_mses(val_pccs, val_mses, 'val', ws, val_indices, protein_seqs, protein_bvals, protein_list)
+    get_stats_on_pccs_and_mses(test_pccs, test_mses, 'test', ws, test_indices, protein_seqs, protein_bvals, protein_list)
 
