@@ -27,6 +27,7 @@ def aa_to_index(aa):
 def get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, indices, ws,  gbt, oh, imp, use_metadata=False):
     pccs = []
     mses = []
+    preds = []
     for i in indices:
         X = []
         for j in range(ws, len(protein_seqs[i]) - ws):
@@ -39,10 +40,11 @@ def get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, indices, ws, 
         y_pred = gbt.predict(X)
         pccs.append(pearsonr(y_pred, protein_bvals[i])[0])
         mses.append(mean_squared_error(y_pred, protein_bvals[i]))
+        preds.append(y_pred)
 
     pccs = np.array(pccs)
     mses = np.array(mses)
-    return pccs, mses
+    return pccs, mses, preds
 
 def get_stats_on_pccs_and_mses(pccs, mses, prefix, ws, indices, protein_seqs, protein_bvals, protein_list):
     lens = [len(protein_seqs[i]) - 2 * ws for i in indices]
@@ -79,6 +81,14 @@ def get_stats_on_pccs_and_mses(pccs, mses, prefix, ws, indices, protein_seqs, pr
     print("MSE vs b-val mean correlation: {}".format(clf.score(mses.reshape((-1,1)), bvals_mean)))
     clf.fit(pccs.reshape((-1, 1)), bvals_mean)
     print("PCC vs b-val mean correlation: {}".format(clf.score(pccs.reshape((-1,1)), bvals_mean)))
+    
+def write_preds(indices, protein_list, preds, dirname):
+    for i in range(len(indices)):
+        protein = protein_list[indices[i]]
+        with open(os.path.join(dirname, protein), "w") as f:
+            for j in range(len(preds[i])):
+                f.write('{}\n'.format(preds[i][j]))
+
  
 if __name__ == '__main__':
     if len(sys.argv) < 5:
@@ -93,6 +103,7 @@ if __name__ == '__main__':
     #output_dir = sys.argv[3]
     protein_metadata = sys.argv[3]
     ws = int(sys.argv[4])
+    pred_dir = sys.argv[5]
     print(ws)
 
     protein_list = []
@@ -176,16 +187,19 @@ if __name__ == '__main__':
     print(X.shape)
     oh = OneHotEncoder(categorical_features=categorical_features)
     print("Converted to numpy array.")
-    gbt = GradientBoostingRegressor(max_depth=3, random_state=42, n_estimators=100)
+    gbt = GradientBoostingRegressor(max_depth=3, random_state=42, n_estimators=1000, learning_rate=0.8,  n_iter_no_change=10)
     gbt.fit(X, y)
     print("Model fit done.")
     fi = gbt.feature_importances_
     fi /= max(fi)
     print(fi)
-    train_pccs, train_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, train_indices, ws,  gbt, oh, imp, use_metadata)
-    val_pccs, val_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, val_indices, ws,  gbt, oh, imp, use_metadata)
-    test_pccs, test_mses = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, test_indices, ws,  gbt, oh, imp, use_metadata)
+    train_pccs, train_mses, train_preds = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, train_indices, ws,  gbt, oh, imp, use_metadata)
+    val_pccs, val_mses, val_preds = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, val_indices, ws,  gbt, oh, imp, use_metadata)
+    test_pccs, test_mses, test_preds = get_pccs_and_mses(protein_seqs, protein_bvals, protein_mdatas, test_indices, ws,  gbt, oh, imp, use_metadata)
     get_stats_on_pccs_and_mses(train_pccs, train_mses, 'train', ws, train_indices, protein_seqs, protein_bvals, protein_list)
     get_stats_on_pccs_and_mses(val_pccs, val_mses, 'val', ws, val_indices, protein_seqs, protein_bvals, protein_list)
     get_stats_on_pccs_and_mses(test_pccs, test_mses, 'test', ws, test_indices, protein_seqs, protein_bvals, protein_list)
-
+    os.makedirs(pred_dir, exist_ok=True)
+    write_preds(train_indices, protein_list, train_preds, pred_dir)
+    write_preds(val_indices, protein_list, val_preds, pred_dir)
+    write_preds(test_indices, protein_list, test_preds, pred_dir)

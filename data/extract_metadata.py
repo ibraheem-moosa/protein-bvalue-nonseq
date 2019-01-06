@@ -8,7 +8,7 @@ out_path = sys.argv[3]
 keys = []
 with open(keys_file) as f:
     for l in f:
-        keys.append(l.strip())
+        keys.append(l.strip() + ' ')
 
 for k in keys:
     print(k)
@@ -28,18 +28,19 @@ for fname in cif_files:
         for l in f:
             l = l.strip()
             for k in keys:
-                never_found = True
+                already_found = k in out_dict[protein]
+                if already_found:
+                    continue
                 if l.startswith(k):
                     value = l[len(k):].strip().upper()
+                    value = value.replace(',', ' ')
                     out_dict[protein][k] = value
-                    never_found = False
-                if never_found:
-                    if k in miss_dict:
-                        miss_dict[k] += 1
-                    else:
-                        miss_dict[k] = 1
-                    out_dict[protein][k] = '?'
-                    #print('{} not found in {}'.format(k, protein))
+        for k in keys:
+            if k not in out_dict[protein]:
+                out_dict[protein][k] = ''
+                if k not in miss_dict:
+                    miss_dict[k] = 0
+                miss_dict[k] += 1
 
 for k in miss_dict:
     print(k, miss_dict[k])

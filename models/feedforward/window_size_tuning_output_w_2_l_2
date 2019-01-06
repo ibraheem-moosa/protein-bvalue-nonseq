@@ -1,0 +1,1624 @@
+7
+Input read.
+(540304, 15)
+(540304, 315)
+Converted to numpy array.
+Iteration 1, loss = 0.78614145
+Validation score: -0.185649
+Iteration 2, loss = 0.52365613
+Validation score: 0.016389
+Iteration 3, loss = 0.48809125
+Validation score: 0.039820
+Iteration 4, loss = 0.48046511
+Validation score: 0.051541
+Iteration 5, loss = 0.47496816
+Validation score: 0.067618
+Iteration 6, loss = 0.46182123
+Validation score: 0.100948
+Iteration 7, loss = 0.44684577
+Validation score: 0.129560
+Iteration 8, loss = 0.43393676
+Validation score: 0.153150
+Iteration 9, loss = 0.42426931
+Validation score: 0.168337
+Iteration 10, loss = 0.41835234
+Validation score: 0.177004
+Iteration 11, loss = 0.41511228
+Validation score: 0.181651
+Iteration 12, loss = 0.41334701
+Validation score: 0.184138
+Iteration 13, loss = 0.41236189
+Validation score: 0.185569
+Iteration 14, loss = 0.41179532
+Validation score: 0.186336
+Iteration 15, loss = 0.41144169
+Validation score: 0.186902
+Iteration 16, loss = 0.41122142
+Validation score: 0.187273
+Iteration 17, loss = 0.41104302
+Validation score: 0.187597
+Iteration 18, loss = 0.41091901
+Validation score: 0.187717
+Iteration 19, loss = 0.41080902
+Validation score: 0.187784
+Iteration 20, loss = 0.41073133
+Validation score: 0.187966
+Iteration 21, loss = 0.41066332
+Validation score: 0.188111
+Iteration 22, loss = 0.41059813
+Validation score: 0.188246
+Iteration 23, loss = 0.41053937
+Validation score: 0.188285
+Iteration 24, loss = 0.41048370
+Validation score: 0.188323
+Iteration 25, loss = 0.41043723
+Validation score: 0.188334
+Iteration 26, loss = 0.41039073
+Validation score: 0.188356
+Iteration 27, loss = 0.41034729
+Validation score: 0.188467
+Iteration 28, loss = 0.41030117
+Validation score: 0.188487
+Iteration 29, loss = 0.41026889
+Validation score: 0.188499
+Iteration 30, loss = 0.41022818
+Validation score: 0.188622
+Iteration 31, loss = 0.41018820
+Validation score: 0.188634
+Iteration 32, loss = 0.41014842
+Validation score: 0.188694
+Iteration 33, loss = 0.41011026
+Validation score: 0.188623
+Iteration 34, loss = 0.41007823
+Validation score: 0.188754
+Iteration 35, loss = 0.41003993
+Validation score: 0.188795
+Iteration 36, loss = 0.41000628
+Validation score: 0.188848
+Iteration 37, loss = 0.40995816
+Validation score: 0.188893
+Iteration 38, loss = 0.40994195
+Validation score: 0.188884
+Iteration 39, loss = 0.40990523
+Validation score: 0.188962
+Iteration 40, loss = 0.40987239
+Validation score: 0.188972
+Iteration 41, loss = 0.40982893
+Validation score: 0.189031
+Validation score did not improve more than tol=0.000100 for 10 consecutive epochs. Stopping.
+Model fit done.
+0.18618694762281673
+[0.4353195  0.38808209 0.29583928 0.30125572 0.33118347 0.33670065
+ 0.37785063 0.41013116 0.48868022 0.50197565 0.59114467 0.66841886
+ 0.74562173 0.77094649 1.07809984 0.96380722 0.7386266  0.69604889
+ 0.65359553 0.63862095 0.56518059 0.53197328 0.42895013 0.34401579
+ 0.25406589 0.22540324 0.29898047 0.3130448  0.35274576 0.37182192]
+[array([[-4.78721855e-001,  1.14139999e-316],
+       [ 8.66299090e-001, -1.07221578e-316]]), array([[ 1.11201732e+000],
+       [-1.66563709e-316]])]
+[0.07395112 0.0957239 ]
+TRAIN
+Mean PCC: 0.46082295456392813 +- 0.44760683952461217
+PCC: Min: -0.14876116680684887 Max: 0.8660366752631478
+Mean MSE: 0.7957280134033007 +- 0.41424426913242474
+MSE: Min: 0.3385835565628651 Max: 1.3786651692570704
+MSE:
+ArgMin: [('1tif', 76), ('3o2e', 86), ('4o7q', 94), ('2yvi', 89), ('4hlb', 95), ('3vvv', 108), ('6ekb', 62), ('2p0h', 118), ('2rff', 111), ('5i29', 139)]
+ArgMax: [('4aqo', 86), ('1jni', 62), ('2pne', 81), ('3dt5', 119), ('1j0p', 108), ('3dv9', 243), ('5dbl', 130), ('2zpm', 86), ('1sau', 114), ('2w9y', 136)]
+PCC:
+ArgMin: [('3dt5', 119), ('3qou', 282), ('1jni', 62), ('4aqo', 86), ('3dv9', 243), ('2h5c', 198), ('2pne', 81), ('4lzh', 278), ('2nwf', 141), ('1lmi', 131)]
+ArgMax: [('1tif', 76), ('3o2e', 86), ('2yvi', 89), ('2p0h', 118), ('4hlb', 95), ('1xmt', 95), ('6ekb', 62), ('4o7q', 94), ('5w0h', 80), ('5zt3', 114)]
+MSE vs Length correlation: 0.048997340571614305
+PCC vs Length correlation: 0.06520783400690544
+MSE vs b-val mean correlation: 2.133489239486419e-05
+PCC vs b-val mean correlation: 4.852537264155021e-05
+VAL
+Mean PCC: 0.47058902420590065 +- 0.4288788327477183
+PCC: Min: -0.014682774334485393 Max: 0.8563238035791227
+Mean MSE: 0.7865283885932531 +- 0.3926403466106315
+MSE: Min: 0.3194889536338239 Max: 1.2875349875406708
+MSE:
+ArgMin: [('2vc8', 72), ('4gos', 115), ('4i6x', 117), ('3mao', 105), ('5hqh', 96), ('5ijm', 98), ('4zc3', 57), ('4ld6', 117), ('2b1k', 149), ('1i2t', 61)]
+ArgMax: [('2rkn', 77), ('3fgh', 67), ('2rbk', 261), ('1u5p', 211), ('3sw0', 186), ('3gvo', 342), ('2v9k', 467), ('5hl3', 356), ('4rep', 489), ('4eiu', 242)]
+PCC:
+ArgMin: [('2rbk', 261), ('2rkn', 77), ('1u5p', 211), ('3sw0', 186), ('3gvo', 342), ('2v9k', 467), ('4rep', 489), ('5hfg', 205), ('5hl3', 356), ('4e1b', 330)]
+ArgMax: [('2vc8', 72), ('4i6x', 117), ('3mao', 105), ('4gos', 115), ('5hqh', 96), ('5ijm', 98), ('4zc3', 57), ('2q3t', 121), ('3tbn', 87), ('2b1k', 149)]
+MSE vs Length correlation: 0.06544784519223845
+PCC vs Length correlation: 0.08310809794508489
+MSE vs b-val mean correlation: 0.0015017226776924408
+PCC vs b-val mean correlation: 0.0015413765777173571
+TEST
+Mean PCC: 0.45947095097160084 +- 0.45569973780142825
+PCC: Min: -0.10427330016721274 Max: 0.8448839200366159
+Mean MSE: 0.7969749722225948 +- 0.4278290670684485
+MSE: Min: 0.34576100138208027 Max: 1.413606860252202
+MSE:
+ArgMin: [('3o70', 55), ('2od5', 91), ('5kuj', 95), ('3t7l', 74), ('5ol9', 81), ('4qq6', 58), ('3chm', 161), ('1mud', 225), ('3cp0', 63), ('1od3', 131)]
+ArgMax: [('2o1a', 122), ('4npn', 71), ('4xxt', 221), ('4mdw', 147), ('5i8g', 226), ('3b6e', 182), ('4gs3', 90), ('3f44', 210), ('2vac', 134), ('5fie', 142)]
+PCC:
+ArgMin: [('4npn', 71), ('2o1a', 122), ('4xxt', 221), ('5i8g', 226), ('1r5y', 361), ('2vac', 134), ('3b6e', 182), ('4uyr', 188), ('4qdn', 118), ('4gs3', 90)]
+ArgMax: [('2od5', 91), ('3o70', 55), ('1mud', 225), ('3chm', 161), ('5kuj', 95), ('1od3', 131), ('5ol9', 81), ('4qq6', 58), ('3t7l', 74), ('1dqg', 134)]
+MSE vs Length correlation: 0.045642788335255036
+PCC vs Length correlation: 0.05340895648326627
+MSE vs b-val mean correlation: 5.134224877911819e-06
+PCC vs b-val mean correlation: 1.000898123859617e-05
+8
+Input read.
+(540304, 17)
+(540304, 357)
+Converted to numpy array.
+Iteration 1, loss = 1.06303030
+Validation score: -1.013437
+Iteration 2, loss = 0.96471088
+Validation score: -0.840264
+Iteration 3, loss = 0.88297432
+Validation score: -0.687567
+Iteration 4, loss = 0.81080770
+Validation score: -0.552890
+Iteration 5, loss = 0.74734976
+Validation score: -0.434957
+Iteration 6, loss = 0.69207589
+Validation score: -0.332941
+Iteration 7, loss = 0.64467936
+Validation score: -0.246300
+Iteration 8, loss = 0.60478316
+Validation score: -0.174276
+Iteration 9, loss = 0.57215693
+Validation score: -0.116438
+Iteration 10, loss = 0.54644538
+Validation score: -0.071910
+Iteration 11, loss = 0.52723865
+Validation score: -0.039833
+Iteration 12, loss = 0.51396602
+Validation score: -0.018813
+Iteration 13, loss = 0.50583194
+Validation score: -0.007017
+Iteration 14, loss = 0.50170485
+Validation score: -0.001834
+Iteration 15, loss = 0.50013758
+Validation score: -0.000280
+Iteration 16, loss = 0.49975964
+Validation score: -0.000025
+Iteration 17, loss = 0.49970142
+Validation score: -0.000002
+Iteration 18, loss = 0.49968920
+Validation score: -0.000006
+Iteration 19, loss = 0.49968312
+Validation score: -0.000003
+Iteration 20, loss = 0.49967746
+Validation score: -0.000001
+Iteration 21, loss = 0.49967485
+Validation score: -0.000000
+Iteration 22, loss = 0.49967372
+Validation score: -0.000001
+Iteration 23, loss = 0.49967309
+Validation score: -0.000002
+Iteration 24, loss = 0.49967360
+Validation score: -0.000003
+Iteration 25, loss = 0.49967328
+Validation score: -0.000002
+Iteration 26, loss = 0.49967313
+Validation score: -0.000001
+Iteration 27, loss = 0.49967247
+Validation score: -0.000006
+Validation score did not improve more than tol=0.000100 for 10 consecutive epochs. Stopping.
+Model fit done.
+-1.5968551481115867e-07
+[8.16356065e-60 6.66619683e-64 4.36388646e-63 9.09430695e-78
+ 7.25159197e-74 1.47114823e-47 1.24460694e-53 6.63195383e-59
+ 3.17535165e-48 2.14368219e-50 3.69074897e-48 5.05936150e-63
+ 7.86866813e-59 9.89707343e-51 5.09383114e-57 9.25041006e-78
+ 8.52214781e-57 1.56116707e-53 2.17206362e-62 2.54117887e-67
+ 6.89244705e-63 7.44712248e-63 5.75954556e-40 9.21190901e-61
+ 1.77415817e-58 1.74129919e-68 5.11372988e-57 3.15014797e-48
+ 1.19538555e-53 7.71232864e-63 9.81589831e-57 1.19409032e-66
+ 9.66999687e-68 1.32940573e-71]
+[array([[ 9.02574422e-005,  7.72233463e-002],
+       [-1.23969421e-114,  6.27934884e-002]]), array([[ 2.73327199e-59],
+       [-7.41911612e-06]])]
+[0.08037308 0.03322671]
+TRAIN
+Mean PCC: nan +- nan
+PCC: Min: nan Max: nan
+Mean MSE: 1.0000001596855146 +- 5.45671416372052e-16
+MSE: Min: 1.000000159685514 Max: 1.000000159685515
+MSE:
+ArgMin: [('3def', 244), ('4evm', 138), ('1i9s', 189), ('5uqj', 209), ('1o1y', 230), ('3pow', 251), ('1h6h', 143), ('1zpw', 82), ('5mb2', 504), ('1yd0', 89)]
+ArgMax: [('4trk', 242), ('5nhx', 126), ('4bpf', 86), ('5uvg', 348), ('1nnx', 93), ('2qed', 252), ('5xhb', 198), ('4zgf', 141), ('3iv0', 466), ('5gv1', 270)]
+PCC:
+ArgMin: [('3mxz', 107), ('3eaf', 384), ('1clw', 543), ('5e13', 135), ('4q98', 357), ('4hs1', 84), ('2end', 137), ('2y3c', 278), ('2etb', 252), ('4xrw', 305)]
+ArgMax: [('3a7l', 128), ('2fg1', 157), ('6cr0', 430), ('2j8g', 341), ('2a9i', 105), ('6ape', 284), ('5c68', 109), ('3c6a', 198), ('1qq9', 278), ('4r9p', 210)]
+MSE vs Length correlation: 0.00010834504519585676
+9
+Input read.
+(540304, 19)
+(540304, 399)
+Converted to numpy array.
+Iteration 1, loss = 0.70237054
+Validation score: 0.036206
+Iteration 2, loss = 0.45626625
+Validation score: 0.129061
+Iteration 3, loss = 0.42591350
+Validation score: 0.163385
+Iteration 4, loss = 0.41574709
+Validation score: 0.173596
+Iteration 5, loss = 0.41299271
+Validation score: 0.176301
+Iteration 6, loss = 0.41221424
+Validation score: 0.177177
+Iteration 7, loss = 0.41185559
+Validation score: 0.177764
+Iteration 8, loss = 0.41161328
+Validation score: 0.178237
+Iteration 9, loss = 0.41138605
+Validation score: 0.178519
+Iteration 10, loss = 0.41118358
+Validation score: 0.179034
+Iteration 11, loss = 0.41099100
+Validation score: 0.179289
+Iteration 12, loss = 0.41081296
+Validation score: 0.179657
+Iteration 13, loss = 0.41066240
+Validation score: 0.179981
+Iteration 14, loss = 0.41050656
+Validation score: 0.180203
+Iteration 15, loss = 0.41036503
+Validation score: 0.180563
+Iteration 16, loss = 0.41022286
+Validation score: 0.180770
+Iteration 17, loss = 0.41009801
+Validation score: 0.180983
+Iteration 18, loss = 0.40998543
+Validation score: 0.181234
+Iteration 19, loss = 0.40988568
+Validation score: 0.181354
+Iteration 20, loss = 0.40977669
+Validation score: 0.181495
+Iteration 21, loss = 0.40967692
+Validation score: 0.181708
+Iteration 22, loss = 0.40959711
+Validation score: 0.182004
+Iteration 23, loss = 0.40951622
+Validation score: 0.182069
+Iteration 24, loss = 0.40943241
+Validation score: 0.182360
+Iteration 25, loss = 0.40935026
+Validation score: 0.182576
+Iteration 26, loss = 0.40928088
+Validation score: 0.182637
+Iteration 27, loss = 0.40921997
+Validation score: 0.182747
+Iteration 28, loss = 0.40915130
+Validation score: 0.182888
+Iteration 29, loss = 0.40910712
+Validation score: 0.183011
+Iteration 30, loss = 0.40905765
+Validation score: 0.183059
+Iteration 31, loss = 0.40899308
+Validation score: 0.183192
+Iteration 32, loss = 0.40894980
+Validation score: 0.183311
+Iteration 33, loss = 0.40890083
+Validation score: 0.183452
+Iteration 34, loss = 0.40885915
+Validation score: 0.183511
+Iteration 35, loss = 0.40882129
+Validation score: 0.183572
+Iteration 36, loss = 0.40877913
+Validation score: 0.183557
+Iteration 37, loss = 0.40874862
+Validation score: 0.183414
+Iteration 38, loss = 0.40871456
+Validation score: 0.183820
+Iteration 39, loss = 0.40868114
+Validation score: 0.183812
+Iteration 40, loss = 0.40864421
+Validation score: 0.183870
+Iteration 41, loss = 0.40862040
+Validation score: 0.183974
+Iteration 42, loss = 0.40859856
+Validation score: 0.184050
+Iteration 43, loss = 0.40856753
+Validation score: 0.184095
+Iteration 44, loss = 0.40853781
+Validation score: 0.184181
+Iteration 45, loss = 0.40851734
+Validation score: 0.184180
+Iteration 46, loss = 0.40849571
+Validation score: 0.184306
+Iteration 47, loss = 0.40847702
+Validation score: 0.184333
+Iteration 48, loss = 0.40844879
+Validation score: 0.183967
+Iteration 49, loss = 0.40843724
+Validation score: 0.184249
+Iteration 50, loss = 0.40842505
+Validation score: 0.184382
+Iteration 51, loss = 0.40839858
+Validation score: 0.184439
+Iteration 52, loss = 0.40838283
+Validation score: 0.184410
+Iteration 53, loss = 0.40837374
+Validation score: 0.184413
+Iteration 54, loss = 0.40836125
+Validation score: 0.184578
+Iteration 55, loss = 0.40832094
+Validation score: 0.184644
+Iteration 56, loss = 0.40831853
+Validation score: 0.184635
+Iteration 57, loss = 0.40831330
+Validation score: 0.184617
+Iteration 58, loss = 0.40830597
+Validation score: 0.184686
+Iteration 59, loss = 0.40828680
+Validation score: 0.184713
+Iteration 60, loss = 0.40827672
+Validation score: 0.184765
+Iteration 61, loss = 0.40825551
+Validation score: 0.184740
+Iteration 62, loss = 0.40824801
+Validation score: 0.184834
+Iteration 63, loss = 0.40824247
+Validation score: 0.184782
+Iteration 64, loss = 0.40823433
+Validation score: 0.184622
+Iteration 65, loss = 0.40821505
+Validation score: 0.184686
+Validation score did not improve more than tol=0.000100 for 10 consecutive epochs. Stopping.
+Model fit done.
+0.18397681339410688
+[0.27167371 0.27621833 0.31591262 0.2886821  0.29466886 0.25338704
+ 0.36090989 0.30369359 0.32301708 0.30162216 0.35704247 0.31422597
+ 0.38576879 0.38453466 0.38424086 0.4293884  0.49209019 0.43533385
+ 0.58713657 0.50427989 0.47024904 0.44040859 0.45192798 0.47521065
+ 0.42762188 0.39218312 0.33562546 0.3035267  0.40627947 0.36596784
+ 0.29834563 0.30130103 0.34177332 0.39207661 0.23483101 0.26294375
+ 0.2613457  0.22765199]
+[array([[ 0.61648622,  0.86910586],
+       [-0.53197153,  0.68918775]]), array([[ 0.37884348],
+       [-1.39991817]])]
+[0.17938697 0.11156313]
+TRAIN
+Mean PCC: 0.45763132294519243 +- 0.43761177767703985
+PCC: Min: -0.13259600541948946 Max: 0.863581454075894
+Mean MSE: 0.7984823539221675 +- 0.39584937236635254
+MSE: Min: 0.36000887486785105 Max: 1.3544634799629272
+MSE:
+ArgMin: [('3o2e', 86), ('1tif', 76), ('4o7q', 94), ('2yvi', 89), ('6ekb', 62), ('1xmt', 95), ('3vvv', 108), ('4hlb', 95), ('6c4v', 81), ('2p0h', 118)]
+ArgMax: [('4aqo', 86), ('3dt5', 119), ('1jni', 62), ('2pne', 81), ('2zpm', 86), ('1j0p', 108), ('3dv9', 243), ('4up5', 85), ('1sau', 114), ('5dbl', 130)]
+PCC:
+ArgMin: [('3dt5', 119), ('3qou', 282), ('4aqo', 86), ('1jni', 62), ('4up5', 85), ('3dv9', 243), ('1lmi', 131), ('2pne', 81), ('2h5c', 198), ('4lzh', 278)]
+ArgMax: [('1tif', 76), ('3o2e', 86), ('2yvi', 89), ('2p0h', 118), ('1xmt', 95), ('4o7q', 94), ('6ekb', 62), ('4hlb', 95), ('6c4v', 81), ('5w0h', 80)]
+MSE vs Length correlation: 0.05047625419773704
+PCC vs Length correlation: 0.06576072639137598
+MSE vs b-val mean correlation: 4.057720768824158e-05
+PCC vs b-val mean correlation: 4.423156608879264e-05
+VAL
+Mean PCC: 0.4669965002530623 +- 0.41722181519884527
+PCC: Min: -0.022807838654234004 Max: 0.8443502765228473
+Mean MSE: 0.7897672627218827 +- 0.37386963808337903
+MSE: Min: 0.35844789249776304 Max: 1.236640848995156
+MSE:
+ArgMin: [('2vc8', 72), ('4i6x', 117), ('3mao', 105), ('4gos', 115), ('5ijm', 98), ('5hqh', 96), ('4zc3', 57), ('4ld6', 117), ('2i5u', 77), ('2b1k', 149)]
+ArgMax: [('2rkn', 77), ('2rbk', 261), ('3fgh', 67), ('1u5p', 211), ('3sw0', 186), ('2v9k', 467), ('3zt9', 192), ('5hl3', 356), ('3gvo', 342), ('4eiu', 242)]
+PCC:
+ArgMin: [('2rbk', 261), ('1u5p', 211), ('2rkn', 77), ('3sw0', 186), ('2v9k', 467), ('3gvo', 342), ('5hfg', 205), ('5hl3', 356), ('4rep', 489), ('4eiu', 242)]
+ArgMax: [('2vc8', 72), ('4i6x', 117), ('3mao', 105), ('5hqh', 96), ('4gos', 115), ('5ijm', 98), ('2q3t', 121), ('4zc3', 57), ('4ld6', 117), ('3tbn', 87)]
+MSE vs Length correlation: 0.06741603422344378
+PCC vs Length correlation: 0.08506632821774396
+MSE vs b-val mean correlation: 0.002139654730657914
+PCC vs b-val mean correlation: 0.0017916241680758782
+TEST
+Mean PCC: 0.45707795638653637 +- 0.4422409763922677
+PCC: Min: -0.11010709589469221 Max: 0.8468337056247085
+Mean MSE: 0.799172491783898 +- 0.4067489562254066
+MSE: Min: 0.40147874498059255 Max: 1.361197785107969
+MSE:
+ArgMin: [('2od5', 91), ('3o70', 55), ('5kuj', 95), ('3t7l', 74), ('5ol9', 81), ('3chm', 161), ('4qq6', 58), ('1tuk', 67), ('1mud', 225), ('4eih', 101)]
+ArgMax: [('4npn', 71), ('2o1a', 122), ('4xxt', 221), ('5i8g', 226), ('4mdw', 147), ('3b6e', 182), ('4gs3', 90), ('2vac', 134), ('3gk6', 153), ('4qdn', 118)]
+PCC:
+ArgMin: [('4npn', 71), ('4xxt', 221), ('2o1a', 122), ('5i8g', 226), ('1r5y', 361), ('2vac', 134), ('3b6e', 182), ('4uyr', 188), ('4gs3', 90), ('3ip0', 158)]
+ArgMax: [('2od5', 91), ('1mud', 225), ('5ol9', 81), ('5kuj', 95), ('3chm', 161), ('3o70', 55), ('3t7l', 74), ('1tuk', 67), ('4rwu', 81), ('3cp0', 63)]
+MSE vs Length correlation: 0.045603008172907855
+PCC vs Length correlation: 0.05264646637456072
+MSE vs b-val mean correlation: 1.4815212722174564e-05
+PCC vs b-val mean correlation: 2.4759469809509934e-05
+10
+Input read.
+(540304, 21)
+(540304, 441)
+Converted to numpy array.
+Iteration 1, loss = 1.05688030
+Validation score: -1.042006
+Iteration 2, loss = 0.99390721
+Validation score: -0.946782
+Iteration 3, loss = 0.95554124
+Validation score: -0.883880
+Iteration 4, loss = 0.92805522
+Validation score: -0.834767
+Iteration 5, loss = 0.90532603
+Validation score: -0.791950
+Iteration 6, loss = 0.88487166
+Validation score: -0.752415
+Iteration 7, loss = 0.86564248
+Validation score: -0.714700
+Iteration 8, loss = 0.84714653
+Validation score: -0.678135
+Iteration 9, loss = 0.82914146
+Validation score: -0.642351
+Iteration 10, loss = 0.81152540
+Validation score: -0.607352
+Iteration 11, loss = 0.79425192
+Validation score: -0.573039
+Iteration 12, loss = 0.77731135
+Validation score: -0.539462
+Iteration 13, loss = 0.76074905
+Validation score: -0.506667
+Iteration 14, loss = 0.74461473
+Validation score: -0.474753
+Iteration 15, loss = 0.72891885
+Validation score: -0.443704
+Iteration 16, loss = 0.71366005
+Validation score: -0.413500
+Iteration 17, loss = 0.69882394
+Validation score: -0.384114
+Iteration 18, loss = 0.68441688
+Validation score: -0.355617
+Iteration 19, loss = 0.67045745
+Validation score: -0.328002
+Iteration 20, loss = 0.65694951
+Validation score: -0.301278
+Iteration 21, loss = 0.64388644
+Validation score: -0.275462
+Iteration 22, loss = 0.63128016
+Validation score: -0.250597
+Iteration 23, loss = 0.61914607
+Validation score: -0.226680
+Iteration 24, loss = 0.60749367
+Validation score: -0.203739
+Iteration 25, loss = 0.59632814
+Validation score: -0.181780
+Iteration 26, loss = 0.58567046
+Validation score: -0.160862
+Iteration 27, loss = 0.57551932
+Validation score: -0.140952
+Iteration 28, loss = 0.56589337
+Validation score: -0.122114
+Iteration 29, loss = 0.55677994
+Validation score: -0.104307
+Iteration 30, loss = 0.54820248
+Validation score: -0.087592
+Iteration 31, loss = 0.54017784
+Validation score: -0.071992
+Iteration 32, loss = 0.53270965
+Validation score: -0.057525
+Iteration 33, loss = 0.52578986
+Validation score: -0.044143
+Iteration 34, loss = 0.51942249
+Validation score: -0.031888
+Iteration 35, loss = 0.51362599
+Validation score: -0.020789
+Iteration 36, loss = 0.50841253
+Validation score: -0.010872
+Iteration 37, loss = 0.50377186
+Validation score: -0.002083
+Iteration 38, loss = 0.49970573
+Validation score: 0.005529
+Iteration 39, loss = 0.49621185
+Validation score: 0.012012
+Iteration 40, loss = 0.49328003
+Validation score: 0.017375
+Iteration 41, loss = 0.49089470
+Validation score: 0.021660
+Iteration 42, loss = 0.48902632
+Validation score: 0.024949
+Iteration 43, loss = 0.48764227
+Validation score: 0.027302
+Iteration 44, loss = 0.48667885
+Validation score: 0.028880
+Iteration 45, loss = 0.48606493
+Validation score: 0.029835
+Iteration 46, loss = 0.48570991
+Validation score: 0.030364
+Iteration 47, loss = 0.48549550
+Validation score: 0.030750
+Iteration 48, loss = 0.48526298
+Validation score: 0.031473
+Iteration 49, loss = 0.48467818
+Validation score: 0.033269
+Iteration 50, loss = 0.48348245
+Validation score: 0.035991
+Iteration 51, loss = 0.48199656
+Validation score: 0.039108
+Iteration 52, loss = 0.48032917
+Validation score: 0.042613
+Iteration 53, loss = 0.47843339
+Validation score: 0.046657
+Iteration 54, loss = 0.47624229
+Validation score: 0.051311
+Iteration 55, loss = 0.47384083
+Validation score: 0.056304
+Iteration 56, loss = 0.47129786
+Validation score: 0.061489
+Iteration 57, loss = 0.46870123
+Validation score: 0.066681
+Iteration 58, loss = 0.46610923
+Validation score: 0.071861
+Iteration 59, loss = 0.46354461
+Validation score: 0.076966
+Iteration 60, loss = 0.46103185
+Validation score: 0.081933
+Iteration 61, loss = 0.45859030
+Validation score: 0.086722
+Iteration 62, loss = 0.45621756
+Validation score: 0.091335
+Iteration 63, loss = 0.45393273
+Validation score: 0.095734
+Iteration 64, loss = 0.45176284
+Validation score: 0.099817
+Iteration 65, loss = 0.44973874
+Validation score: 0.103622
+Iteration 66, loss = 0.44784708
+Validation score: 0.107178
+Iteration 67, loss = 0.44606766
+Validation score: 0.110533
+Iteration 68, loss = 0.44437455
+Validation score: 0.113746
+Iteration 69, loss = 0.44274885
+Validation score: 0.116837
+Iteration 70, loss = 0.44117924
+Validation score: 0.119819
+Iteration 71, loss = 0.43966134
+Validation score: 0.122699
+Iteration 72, loss = 0.43819839
+Validation score: 0.125462
+Iteration 73, loss = 0.43678621
+Validation score: 0.128119
+Iteration 74, loss = 0.43543497
+Validation score: 0.130643
+Iteration 75, loss = 0.43414269
+Validation score: 0.133058
+Iteration 76, loss = 0.43290359
+Validation score: 0.135365
+Iteration 77, loss = 0.43171840
+Validation score: 0.137563
+Iteration 78, loss = 0.43059464
+Validation score: 0.139632
+Iteration 79, loss = 0.42953354
+Validation score: 0.141582
+Iteration 80, loss = 0.42853474
+Validation score: 0.143410
+Iteration 81, loss = 0.42759075
+Validation score: 0.145137
+Iteration 82, loss = 0.42670267
+Validation score: 0.146761
+Iteration 83, loss = 0.42586600
+Validation score: 0.148277
+Iteration 84, loss = 0.42508813
+Validation score: 0.149681
+Iteration 85, loss = 0.42436241
+Validation score: 0.150993
+Iteration 86, loss = 0.42368564
+Validation score: 0.152212
+Iteration 87, loss = 0.42305486
+Validation score: 0.153345
+Iteration 88, loss = 0.42247045
+Validation score: 0.154388
+Iteration 89, loss = 0.42193042
+Validation score: 0.155351
+Iteration 90, loss = 0.42142982
+Validation score: 0.156236
+Iteration 91, loss = 0.42096624
+Validation score: 0.157051
+Iteration 92, loss = 0.42054030
+Validation score: 0.157806
+Iteration 93, loss = 0.42014288
+Validation score: 0.158504
+Iteration 94, loss = 0.41977643
+Validation score: 0.159149
+Iteration 95, loss = 0.41943851
+Validation score: 0.159741
+Iteration 96, loss = 0.41912571
+Validation score: 0.160295
+Iteration 97, loss = 0.41883645
+Validation score: 0.160809
+Iteration 98, loss = 0.41856724
+Validation score: 0.161287
+Iteration 99, loss = 0.41831832
+Validation score: 0.161720
+Iteration 100, loss = 0.41808825
+Validation score: 0.162134
+Model fit done.
+0.16546312706341293
+[0.18442492 0.19867618 0.16916928 0.14491159 0.16440479 0.22269952
+ 0.15861965 0.23659218 0.21560098 0.20774184 0.19465914 0.14750574
+ 0.25071101 0.28608497 0.27733716 0.27825383 0.37881793 0.37249508
+ 0.51155864 0.4593313  0.79439088 0.64720874 0.5273093  0.45271039
+ 0.38084475 0.3608784  0.34032899 0.32903092 0.27432288 0.2876283
+ 0.17454422 0.23608569 0.17021724 0.24311509 0.15226827 0.20776072
+ 0.16943794 0.20629009 0.16132963 0.19069948 0.16884301 0.16705845]
+[array([[-7.65224097e-001, -8.05550992e-316],
+       [-9.80675140e-001,  7.75247567e-002]]), array([[-1.26221071e+000],
+       [-9.96298819e-316]])]
+[0.23303179 0.00879427]
+TRAIN
+Mean PCC: 0.4374363154585247 +- 0.3940358810228793
+PCC: Min: -0.07851781228326742 Max: 0.8339738470689221
+Mean MSE: 0.821581040777924 +- 0.2774181092872132
+MSE: Min: 0.494552356328777 Max: 1.2093477045284264
+MSE:
+ArgMin: [('1tif', 76), ('4o7q', 94), ('3o2e', 86), ('2asc', 65), ('2yvi', 89), ('2p0h', 118), ('5oo9', 121), ('4rgi', 71), ('1xmt', 95), ('2cxh', 180)]
+ArgMax: [('3dt5', 119), ('2pne', 81), ('4aqo', 86), ('1jni', 62), ('2p3h', 98), ('1j0p', 108), ('5dbl', 130), ('2w9y', 136), ('1sau', 114), ('2nwf', 141)]
+PCC:
+ArgMin: [('3dt5', 119), ('2pne', 81), ('1jni', 62), ('2h5c', 198), ('4aqo', 86), ('2nwf', 141), ('1lmi', 131), ('5nuv', 301), ('2p3h', 98), ('3qou', 282)]
+ArgMax: [('1tif', 76), ('3o2e', 86), ('2p0h', 118), ('4o7q', 94), ('5bq1', 209), ('2asc', 65), ('4rgi', 71), ('1xmt', 95), ('2yvi', 89), ('5oo9', 121)]
+MSE vs Length correlation: 0.05606704140032315
+PCC vs Length correlation: 0.054503894281150767
+MSE vs b-val mean correlation: 0.00010083977750874329
+PCC vs b-val mean correlation: 0.00013470016509187221
+VAL
+Mean PCC: 0.44674246629298087 +- 0.3868645092457119
+PCC: Min: -0.03739491217516806 Max: 0.7857151155603703
+Mean MSE: 0.8150445207183383 +- 0.27395003171765
+MSE: Min: 0.5208059334823905 Max: 1.1535795182953368
+MSE:
+ArgMin: [('4i6x', 117), ('2vc8', 72), ('2cxy', 114), ('2i5u', 77), ('4ld6', 117), ('4gos', 115), ('2q3t', 121), ('2i53', 254), ('3ii2', 150), ('3mao', 105)]
+ArgMax: [('2rkn', 77), ('1u5p', 211), ('2rbk', 261), ('3sw0', 186), ('3fgh', 67), ('2v9k', 467), ('3gvo', 342), ('5hfg', 205), ('3zt9', 192), ('4rep', 489)]
+PCC:
+ArgMin: [('1u5p', 211), ('2rbk', 261), ('3sw0', 186), ('2rkn', 77), ('2v9k', 467), ('5hfg', 205), ('3gvo', 342), ('4rep', 489), ('3zt9', 192), ('2fk9', 140)]
+ArgMax: [('4i6x', 117), ('2q3t', 121), ('2cxy', 114), ('4ld6', 117), ('2vc8', 72), ('4gos', 115), ('3ii2', 150), ('2i5u', 77), ('2e7v', 115), ('2a7b', 120)]
+MSE vs Length correlation: 0.07082013420317068
+PCC vs Length correlation: 0.06923797751424887
+MSE vs b-val mean correlation: 0.0025168979351254395
+PCC vs b-val mean correlation: 0.0019671965633312194
+TEST
+Mean PCC: 0.4325020202003547 +- 0.39285632884578325
+PCC: Min: -0.12409436308729951 Max: 0.7666952406676573
+Mean MSE: 0.8251830388654442 +- 0.278067652484954
+MSE: Min: 0.5729964090587852 Max: 1.2607402632521685
+MSE:
+ArgMin: [('2od5', 91), ('3o70', 55), ('3t7l', 74), ('3f2z', 149), ('1tuk', 67), ('5x4m', 131), ('3rjv', 208), ('5kuj', 95), ('3chm', 161), ('3po8', 98)]
+ArgMax: [('4npn', 71), ('4xxt', 221), ('5i8g', 226), ('3b6e', 182), ('2o1a', 122), ('2vac', 134), ('4qdn', 118), ('5ffd', 137), ('1r5y', 361), ('3zr8', 65)]
+PCC:
+ArgMin: [('4npn', 71), ('4xxt', 221), ('5i8g', 226), ('2vac', 134), ('3b6e', 182), ('1r5y', 361), ('4qdn', 118), ('2o1a', 122), ('5ffd', 137), ('4uyr', 188)]
+ArgMax: [('2od5', 91), ('5x4m', 131), ('3po8', 98), ('3chm', 161), ('1tuk', 67), ('3o70', 55), ('3cp0', 63), ('3rjv', 208), ('3t7l', 74), ('4byz', 194)]
+MSE vs Length correlation: 0.04041408120977552
+PCC vs Length correlation: 0.03453902263607067
+MSE vs b-val mean correlation: 5.582963282790843e-06
+PCC vs b-val mean correlation: 5.627198262914135e-09
+11
+Input read.
+(540304, 23)
+(540304, 483)
+Converted to numpy array.
+Iteration 1, loss = 0.57447364
+Validation score: -0.126427
+Iteration 2, loss = 0.55324794
+Validation score: -0.091285
+Iteration 3, loss = 0.53792184
+Validation score: -0.065066
+Iteration 4, loss = 0.52583730
+Validation score: -0.043113
+Iteration 5, loss = 0.51551427
+Validation score: -0.023968
+Iteration 6, loss = 0.50641362
+Validation score: -0.006976
+Iteration 7, loss = 0.49827523
+Validation score: 0.008275
+Iteration 8, loss = 0.49092896
+Validation score: 0.022144
+Iteration 9, loss = 0.48424159
+Validation score: 0.034810
+Iteration 10, loss = 0.47814055
+Validation score: 0.046377
+Iteration 11, loss = 0.47253235
+Validation score: 0.057044
+Iteration 12, loss = 0.46734615
+Validation score: 0.066908
+Iteration 13, loss = 0.46254409
+Validation score: 0.076084
+Iteration 14, loss = 0.45809390
+Validation score: 0.084645
+Iteration 15, loss = 0.45397110
+Validation score: 0.092705
+Iteration 16, loss = 0.45015954
+Validation score: 0.100107
+Iteration 17, loss = 0.44663701
+Validation score: 0.106945
+Iteration 18, loss = 0.44335931
+Validation score: 0.113336
+Iteration 19, loss = 0.44031469
+Validation score: 0.119262
+Iteration 20, loss = 0.43748672
+Validation score: 0.124759
+Iteration 21, loss = 0.43484758
+Validation score: 0.129874
+Iteration 22, loss = 0.43238012
+Validation score: 0.134622
+Iteration 23, loss = 0.43009489
+Validation score: 0.138992
+Iteration 24, loss = 0.42799866
+Validation score: 0.143010
+Iteration 25, loss = 0.42606966
+Validation score: 0.146710
+Iteration 26, loss = 0.42429877
+Validation score: 0.150048
+Iteration 27, loss = 0.42268270
+Validation score: 0.153067
+Iteration 28, loss = 0.42120773
+Validation score: 0.155817
+Iteration 29, loss = 0.41987796
+Validation score: 0.158318
+Iteration 30, loss = 0.41867910
+Validation score: 0.160560
+Iteration 31, loss = 0.41759674
+Validation score: 0.162593
+Iteration 32, loss = 0.41662345
+Validation score: 0.164441
+Iteration 33, loss = 0.41574198
+Validation score: 0.166114
+Iteration 34, loss = 0.41495012
+Validation score: 0.167615
+Iteration 35, loss = 0.41424414
+Validation score: 0.168968
+Iteration 36, loss = 0.41362018
+Validation score: 0.170161
+Iteration 37, loss = 0.41305965
+Validation score: 0.171219
+Iteration 38, loss = 0.41255847
+Validation score: 0.172187
+Iteration 39, loss = 0.41210933
+Validation score: 0.173042
+Iteration 40, loss = 0.41170934
+Validation score: 0.173814
+Iteration 41, loss = 0.41134961
+Validation score: 0.174509
+Iteration 42, loss = 0.41102934
+Validation score: 0.175145
+Iteration 43, loss = 0.41073925
+Validation score: 0.175714
+Iteration 44, loss = 0.41048000
+Validation score: 0.176212
+Iteration 45, loss = 0.41024745
+Validation score: 0.176689
+Iteration 46, loss = 0.41003611
+Validation score: 0.177117
+Iteration 47, loss = 0.40984430
+Validation score: 0.177493
+Iteration 48, loss = 0.40967132
+Validation score: 0.177843
+Iteration 49, loss = 0.40951291
+Validation score: 0.178140
+Iteration 50, loss = 0.40937037
+Validation score: 0.178454
+Iteration 51, loss = 0.40923740
+Validation score: 0.178701
+Iteration 52, loss = 0.40911806
+Validation score: 0.178958
+Iteration 53, loss = 0.40900670
+Validation score: 0.179150
+Iteration 54, loss = 0.40890823
+Validation score: 0.179370
+Iteration 55, loss = 0.40881618
+Validation score: 0.179560
+Iteration 56, loss = 0.40872991
+Validation score: 0.179738
+Iteration 57, loss = 0.40864947
+Validation score: 0.179901
+Iteration 58, loss = 0.40857739
+Validation score: 0.180062
+Iteration 59, loss = 0.40850744
+Validation score: 0.180204
+Iteration 60, loss = 0.40844282
+Validation score: 0.180351
+Iteration 61, loss = 0.40838673
+Validation score: 0.180473
+Iteration 62, loss = 0.40833113
+Validation score: 0.180591
+Iteration 63, loss = 0.40828034
+Validation score: 0.180701
+Iteration 64, loss = 0.40823153
+Validation score: 0.180810
+Iteration 65, loss = 0.40818423
+Validation score: 0.180898
+Iteration 66, loss = 0.40814195
+Validation score: 0.180995
+Iteration 67, loss = 0.40810288
+Validation score: 0.181083
+Iteration 68, loss = 0.40806412
+Validation score: 0.181163
+Iteration 69, loss = 0.40802853
+Validation score: 0.181255
+Iteration 70, loss = 0.40799334
+Validation score: 0.181337
+Iteration 71, loss = 0.40796043
+Validation score: 0.181412
+Iteration 72, loss = 0.40793126
+Validation score: 0.181482
+Iteration 73, loss = 0.40790049
+Validation score: 0.181549
+Iteration 74, loss = 0.40787258
+Validation score: 0.181610
+Iteration 75, loss = 0.40784404
+Validation score: 0.181674
+Validation score did not improve more than tol=0.000100 for 10 consecutive epochs. Stopping.
+Model fit done.
+0.18572168722525217
+[0.10374925 0.21278116 0.20123928 0.2145978  0.17253922 0.2691923
+ 0.14121571 0.18315222 0.1702955  0.22996525 0.21977479 0.26639515
+ 0.20452097 0.21950629 0.18921649 0.21429684 0.26763644 0.36979632
+ 0.28770752 0.43742245 0.41478532 0.47176392 0.58531726 0.52184368
+ 0.42575872 0.42204509 0.3097689  0.38897652 0.2797425  0.36266398
+ 0.18307873 0.29436978 0.16176525 0.18726444 0.20103511 0.30393394
+ 0.15191982 0.24218666 0.14501497 0.19404645 0.19810109 0.24569704
+ 0.19395987 0.18940359 0.23004893 0.2323812 ]
+[array([[ 1.16626821,  0.62290051],
+       [-0.13693614, -0.77122394]]), array([[0.50403675],
+       [1.2282355 ]])]
+[0.06081838 0.01986479]
+TRAIN
+Mean PCC: 0.45934756585631753 +- 0.4458613745429769
+PCC: Min: -0.12319124117479642 Max: 0.8676278592682898
+Mean MSE: 0.7969493551376158 +- 0.4111586597942727
+MSE: Min: 0.343746068282156 Max: 1.4231354090325354
+MSE:
+ArgMin: [('3o2e', 86), ('1tif', 76), ('4o7q', 94), ('2yvi', 89), ('6ekb', 62), ('4hlb', 95), ('5i29', 139), ('3vvv', 108), ('2hcm', 159), ('2rff', 111)]
+ArgMax: [('4aqo', 86), ('1jni', 62), ('2pne', 81), ('3dt5', 119), ('1j0p', 108), ('3dv9', 243), ('2w9y', 136), ('5dbl', 130), ('1sau', 114), ('5v0m', 98)]
+PCC:
+ArgMin: [('3dt5', 119), ('4aqo', 86), ('3qou', 282), ('2h5c', 198), ('1lmi', 131), ('2pne', 81), ('1jni', 62), ('2nwf', 141), ('3dv9', 243), ('2w9y', 136)]
+ArgMax: [('1tif', 76), ('3o2e', 86), ('6ekb', 62), ('2yvi', 89), ('2p0h', 118), ('4hlb', 95), ('4o7q', 94), ('1xmt', 95), ('5w0h', 80), ('2rff', 111)]
+MSE vs Length correlation: 0.045663860502296094
+PCC vs Length correlation: 0.06424635469323725
+MSE vs b-val mean correlation: 2.739540232554738e-06
+PCC vs b-val mean correlation: 9.388563315892995e-06
+VAL
+Mean PCC: 0.4691671321412184 +- 0.4274273059357009
+PCC: Min: 0.004742571934424519 Max: 0.8405778025167419
+Mean MSE: 0.7871674513631296 +- 0.39070634853424974
+MSE: Min: 0.33830734597458334 Max: 1.2355665982457795
+MSE:
+ArgMin: [('2vc8', 72), ('4i6x', 117), ('3mao', 105), ('5hqh', 96), ('5ijm', 98), ('4gos', 115), ('4zc3', 57), ('2q3t', 121), ('4ld6', 117), ('2i5u', 77)]
+ArgMax: [('2rkn', 77), ('3fgh', 67), ('1u5p', 211), ('3sw0', 186), ('2rbk', 261), ('3gvo', 342), ('2v9k', 467), ('3w9k', 135), ('4eiu', 242), ('5hl3', 356)]
+PCC:
+ArgMin: [('2rbk', 261), ('1u5p', 211), ('2rkn', 77), ('3gvo', 342), ('3sw0', 186), ('2v9k', 467), ('5hfg', 205), ('4rep', 489), ('2nwh', 307), ('4eiu', 242)]
+ArgMax: [('2vc8', 72), ('4i6x', 117), ('3mao', 105), ('5hqh', 96), ('5ijm', 98), ('4gos', 115), ('2q3t', 121), ('3tbn', 87), ('2cxy', 114), ('4zc3', 57)]
+MSE vs Length correlation: 0.06308274422623428
+PCC vs Length correlation: 0.08282451753741626
+MSE vs b-val mean correlation: 0.001976869179872831
+PCC vs b-val mean correlation: 0.002023775195193034
+TEST
+Mean PCC: 0.45795607023808865 +- 0.4492570692961301
+PCC: Min: -0.0966259682389232 Max: 0.8434584273384761
+Mean MSE: 0.7981030340608215 +- 0.420368204898676
+MSE: Min: 0.3597411813811947 Max: 1.3857737751773107
+MSE:
+ArgMin: [('3o70', 55), ('2od5', 91), ('5kuj', 95), ('3t7l', 74), ('3chm', 161), ('5ol9', 81), ('1mud', 225), ('4qq6', 58), ('4eih', 101), ('1od3', 131)]
+ArgMax: [('4npn', 71), ('2o1a', 122), ('5i8g', 226), ('4xxt', 221), ('4gs3', 90), ('3b6e', 182), ('4mdw', 147), ('2vac', 134), ('3zr8', 65), ('4qdn', 118)]
+PCC:
+ArgMin: [('4npn', 71), ('2o1a', 122), ('4xxt', 221), ('5i8g', 226), ('2vac', 134), ('1r5y', 361), ('4gs3', 90), ('4qdn', 118), ('3b6e', 182), ('2xfd', 109)]
+ArgMax: [('2od5', 91), ('1mud', 225), ('3o70', 55), ('3chm', 161), ('5ol9', 81), ('5kuj', 95), ('1od3', 131), ('3t7l', 74), ('1tuk', 67), ('5x4m', 131)]
+MSE vs Length correlation: 0.04157243144564282
+PCC vs Length correlation: 0.05162493840749027
+MSE vs b-val mean correlation: 1.630648669115331e-05
+PCC vs b-val mean correlation: 1.4122709910968645e-05
+12
+Input read.
+(540304, 25)
+(540304, 525)
+Converted to numpy array.
+Iteration 1, loss = 1.05985379
+Validation score: -1.080336
+Iteration 2, loss = 1.00184854
+Validation score: -0.860684
+Iteration 3, loss = 0.85166507
+Validation score: -0.534377
+Iteration 4, loss = 0.70988433
+Validation score: -0.302065
+Iteration 5, loss = 0.61477334
+Validation score: -0.152374
+Iteration 6, loss = 0.55486885
+Validation score: -0.062695
+Iteration 7, loss = 0.52083387
+Validation score: -0.016132
+Iteration 8, loss = 0.50401545
+Validation score: 0.005427
+Iteration 9, loss = 0.49580822
+Validation score: 0.017113
+Iteration 10, loss = 0.49046263
+Validation score: 0.026393
+Iteration 11, loss = 0.48582399
+Validation score: 0.035012
+Iteration 12, loss = 0.48150876
+Validation score: 0.043040
+Iteration 13, loss = 0.47749045
+Validation score: 0.050492
+Iteration 14, loss = 0.47377719
+Validation score: 0.057396
+Iteration 15, loss = 0.47033875
+Validation score: 0.063829
+Iteration 16, loss = 0.46713429
+Validation score: 0.069845
+Iteration 17, loss = 0.46413391
+Validation score: 0.075509
+Iteration 18, loss = 0.46130408
+Validation score: 0.080897
+Iteration 19, loss = 0.45861680
+Validation score: 0.086004
+Iteration 20, loss = 0.45605509
+Validation score: 0.090889
+Iteration 21, loss = 0.45360543
+Validation score: 0.095562
+Iteration 22, loss = 0.45126578
+Validation score: 0.100006
+Iteration 23, loss = 0.44903111
+Validation score: 0.104271
+Iteration 24, loss = 0.44689372
+Validation score: 0.108346
+Iteration 25, loss = 0.44484329
+Validation score: 0.112256
+Iteration 26, loss = 0.44288287
+Validation score: 0.115976
+Iteration 27, loss = 0.44100647
+Validation score: 0.119533
+Iteration 28, loss = 0.43921495
+Validation score: 0.122938
+Iteration 29, loss = 0.43750589
+Validation score: 0.126169
+Iteration 30, loss = 0.43588338
+Validation score: 0.129235
+Iteration 31, loss = 0.43434556
+Validation score: 0.132126
+Iteration 32, loss = 0.43289155
+Validation score: 0.134873
+Iteration 33, loss = 0.43151252
+Validation score: 0.137461
+Iteration 34, loss = 0.43021179
+Validation score: 0.139892
+Iteration 35, loss = 0.42898490
+Validation score: 0.142189
+Iteration 36, loss = 0.42783040
+Validation score: 0.144342
+Iteration 37, loss = 0.42675689
+Validation score: 0.146320
+Iteration 38, loss = 0.42575486
+Validation score: 0.148193
+Iteration 39, loss = 0.42481634
+Validation score: 0.149919
+Iteration 40, loss = 0.42394450
+Validation score: 0.151530
+Iteration 41, loss = 0.42313465
+Validation score: 0.153019
+Iteration 42, loss = 0.42238395
+Validation score: 0.154386
+Iteration 43, loss = 0.42168847
+Validation score: 0.155671
+Iteration 44, loss = 0.42104733
+Validation score: 0.156836
+Iteration 45, loss = 0.42045963
+Validation score: 0.157899
+Iteration 46, loss = 0.41991954
+Validation score: 0.158847
+Iteration 47, loss = 0.41942626
+Validation score: 0.159760
+Iteration 48, loss = 0.41896883
+Validation score: 0.160585
+Iteration 49, loss = 0.41854739
+Validation score: 0.161332
+Iteration 50, loss = 0.41816115
+Validation score: 0.162025
+Iteration 51, loss = 0.41780923
+Validation score: 0.162652
+Iteration 52, loss = 0.41748611
+Validation score: 0.163223
+Iteration 53, loss = 0.41718907
+Validation score: 0.163726
+Iteration 54, loss = 0.41691739
+Validation score: 0.164222
+Iteration 55, loss = 0.41666981
+Validation score: 0.164649
+Iteration 56, loss = 0.41644322
+Validation score: 0.165059
+Iteration 57, loss = 0.41623528
+Validation score: 0.165423
+Iteration 58, loss = 0.41604299
+Validation score: 0.165748
+Iteration 59, loss = 0.41586678
+Validation score: 0.166055
+Iteration 60, loss = 0.41570384
+Validation score: 0.166341
+Iteration 61, loss = 0.41555238
+Validation score: 0.166598
+Iteration 62, loss = 0.41541074
+Validation score: 0.166850
+Iteration 63, loss = 0.41527967
+Validation score: 0.167082
+Iteration 64, loss = 0.41515648
+Validation score: 0.167288
+Iteration 65, loss = 0.41504207
+Validation score: 0.167486
+Iteration 66, loss = 0.41493460
+Validation score: 0.167672
+Iteration 67, loss = 0.41483631
+Validation score: 0.167843
+Iteration 68, loss = 0.41474034
+Validation score: 0.167980
+Iteration 69, loss = 0.41465439
+Validation score: 0.168151
+Iteration 70, loss = 0.41457076
+Validation score: 0.168280
+Iteration 71, loss = 0.41449354
+Validation score: 0.168420
+Iteration 72, loss = 0.41441943
+Validation score: 0.168549
+Iteration 73, loss = 0.41434926
+Validation score: 0.168661
+Iteration 74, loss = 0.41428258
+Validation score: 0.168785
+Iteration 75, loss = 0.41421821
+Validation score: 0.168874
+Iteration 76, loss = 0.41415921
+Validation score: 0.168999
+Iteration 77, loss = 0.41409984
+Validation score: 0.169073
+Iteration 78, loss = 0.41404683
+Validation score: 0.169187
+Iteration 79, loss = 0.41399365
+Validation score: 0.169281
+Iteration 80, loss = 0.41394246
+Validation score: 0.169348
+Iteration 81, loss = 0.41389453
+Validation score: 0.169452
+Iteration 82, loss = 0.41384654
+Validation score: 0.169526
+Iteration 83, loss = 0.41380138
+Validation score: 0.169601
+Iteration 84, loss = 0.41375783
+Validation score: 0.169680
+Iteration 85, loss = 0.41371540
+Validation score: 0.169743
+Iteration 86, loss = 0.41367439
+Validation score: 0.169826
+Iteration 87, loss = 0.41363399
+Validation score: 0.169895
+Iteration 88, loss = 0.41359540
+Validation score: 0.169963
+Iteration 89, loss = 0.41355661
+Validation score: 0.170004
+Iteration 90, loss = 0.41352115
+Validation score: 0.170076
+Iteration 91, loss = 0.41348497
+Validation score: 0.170146
+Iteration 92, loss = 0.41344791
+Validation score: 0.170218
+Validation score did not improve more than tol=0.000100 for 10 consecutive epochs. Stopping.
+Model fit done.
+0.17520524944956828
+[[0.49609082 0.352943   0.54022583 0.51727191 0.38863532 0.44867873
+  0.35528158 0.34436183 0.63605429 0.58947665 0.39088555 0.53832271
+  0.38072376 0.53079777 0.73976947 0.69075397 0.53757081 0.53031229
+  0.60244889 0.71338559 0.53663422]
+ [0.47532535 0.43746395 0.44447485 0.43838448 0.41853336 0.39003194
+  0.30046168 0.35103438 0.54792149 0.49290037 0.44175208 0.42683256
+  0.40029584 0.51324766 0.74328175 0.70842716 0.55655159 0.569985
+  0.7092213  0.57962974 0.51222954]]
+[array([[ 1.16136968e+000,  5.85898517e-316],
+       [ 4.38475111e-001, -1.04680436e-315]]), array([[-0.66393558],
+       [-0.50991178]])]
+[0.01476076 0.05902029]
+TRAIN
+Mean PCC: 0.44555655982836306 +- 0.4068502307333601
+PCC: Min: -0.09153843401370086 Max: 0.8653826498101208
+Mean MSE: 0.8103877516134813 +- 0.324568005923208
+MSE: Min: 0.4255951024807042 Max: 1.2469998372984412
+MSE:
+ArgMin: [('1tif', 76), ('3o2e', 86), ('4o7q', 94), ('2yvi', 89), ('6ekb', 62), ('2p0h', 118), ('5oo9', 121), ('1xmt', 95), ('2asc', 65), ('4rgi', 71)]
+ArgMax: [('3dt5', 119), ('4aqo', 86), ('2pne', 81), ('1jni', 62), ('1j0p', 108), ('4up5', 85), ('2w9y', 136), ('1sau', 114), ('5dbl', 130), ('4lzh', 278)]
+PCC:
+ArgMin: [('3dt5', 119), ('2pne', 81), ('1jni', 62), ('4up5', 85), ('4aqo', 86), ('2h5c', 198), ('1lmi', 131), ('2nwf', 141), ('5nuv', 301), ('2w9y', 136)]
+ArgMax: [('1tif', 76), ('3o2e', 86), ('2p0h', 118), ('4o7q', 94), ('6ekb', 62), ('2yvi', 89), ('4rgi', 71), ('1xmt', 95), ('5bq1', 209), ('5zt3', 114)]
+MSE vs Length correlation: 0.05065032796884694
+PCC vs Length correlation: 0.0575858761005521
+MSE vs b-val mean correlation: 6.503564194193512e-05
+PCC vs b-val mean correlation: 7.415448730974106e-05
+VAL
+Mean PCC: 0.4547954577392881 +- 0.39606602917566325
+PCC: Min: -0.004677251635664023 Max: 0.8088175592356115
+Mean MSE: 0.8027821546317486 +- 0.31575978031167184
+MSE: Min: 0.46312036000368106 Max: 1.2201519292533825
+MSE:
+ArgMin: [('4i6x', 117), ('2vc8', 72), ('2cxy', 114), ('4gos', 115), ('4ld6', 117), ('2i5u', 77), ('3mao', 105), ('2q3t', 121), ('5ijm', 98), ('3ii2', 150)]
+ArgMax: [('2rkn', 77), ('2rbk', 261), ('1u5p', 211), ('3sw0', 186), ('3fgh', 67), ('2v9k', 467), ('3zt9', 192), ('3gvo', 342), ('4rep', 489), ('5hfg', 205)]
+PCC:
+ArgMin: [('2rbk', 261), ('1u5p', 211), ('2rkn', 77), ('3sw0', 186), ('2v9k', 467), ('3gvo', 342), ('5hfg', 205), ('4rep', 489), ('3zt9', 192), ('5hl3', 356)]
+ArgMax: [('4i6x', 117), ('2vc8', 72), ('2q3t', 121), ('4ld6', 117), ('4gos', 115), ('2cxy', 114), ('3mao', 105), ('2i5u', 77), ('5hqh', 96), ('3ii2', 150)]
+MSE vs Length correlation: 0.06880181658054485
+PCC vs Length correlation: 0.07793117628522273
+MSE vs b-val mean correlation: 0.002790413408268022
+PCC vs b-val mean correlation: 0.0022941190638895437
+TEST
+Mean PCC: 0.44217279072189253 +- 0.4075983104765276
+PCC: Min: -0.1352993876646291 Max: 0.8026396159720243
+Mean MSE: 0.8135102713208242 +- 0.3276532067526988
+MSE: Min: 0.5136287363965596 Max: 1.3125353946037637
+MSE:
+ArgMin: [('2od5', 91), ('3t7l', 74), ('5kuj', 95), ('3o70', 55), ('3chm', 161), ('1tuk', 67), ('3f2z', 149), ('5x4m', 131), ('4qb0', 95), ('4bgc', 102)]
+ArgMax: [('4npn', 71), ('2o1a', 122), ('4xxt', 221), ('5i8g', 226), ('3b6e', 182), ('2vac', 134), ('5mvr', 148), ('4qdn', 118), ('3zr8', 65), ('4gs3', 90)]
+PCC:
+ArgMin: [('4npn', 71), ('4xxt', 221), ('5i8g', 226), ('2o1a', 122), ('1r5y', 361), ('2vac', 134), ('3b6e', 182), ('4qdn', 118), ('5mvr', 148), ('4r1b', 282)]
+ArgMax: [('2od5', 91), ('3cp0', 63), ('3chm', 161), ('1tuk', 67), ('5x4m', 131), ('5kuj', 95), ('3po8', 98), ('3t7l', 74), ('4rwu', 81), ('1mud', 225)]
+MSE vs Length correlation: 0.040429240759010665
+PCC vs Length correlation: 0.04174199262652767
+MSE vs b-val mean correlation: 4.83559579578241e-06
+PCC vs b-val mean correlation: 1.6638496055376706e-06
+13
+Input read.
+(540304, 27)
+(540304, 567)
+Converted to numpy array.
+Iteration 1, loss = 0.63686458
+Validation score: -0.251057
+Iteration 2, loss = 0.62010642
+Validation score: -0.223669
+Iteration 3, loss = 0.60661156
+Validation score: -0.192255
+Iteration 4, loss = 0.58433808
+Validation score: -0.130599
+Iteration 5, loss = 0.54938631
+Validation score: -0.063386
+Iteration 6, loss = 0.52379605
+Validation score: -0.029434
+Iteration 7, loss = 0.51142068
+Validation score: -0.011279
+Iteration 8, loss = 0.50357655
+Validation score: 0.002543
+Iteration 9, loss = 0.49708992
+Validation score: 0.014687
+Iteration 10, loss = 0.49128587
+Validation score: 0.025702
+Iteration 11, loss = 0.48597645
+Validation score: 0.035830
+Iteration 12, loss = 0.48105365
+Validation score: 0.045263
+Iteration 13, loss = 0.47646710
+Validation score: 0.054090
+Iteration 14, loss = 0.47218783
+Validation score: 0.062397
+Iteration 15, loss = 0.46817234
+Validation score: 0.070257
+Iteration 16, loss = 0.46439569
+Validation score: 0.077638
+Iteration 17, loss = 0.46081775
+Validation score: 0.084686
+Iteration 18, loss = 0.45740517
+Validation score: 0.091352
+Iteration 19, loss = 0.45414711
+Validation score: 0.097754
+Iteration 20, loss = 0.45099983
+Validation score: 0.103931
+Iteration 21, loss = 0.44796274
+Validation score: 0.109915
+Iteration 22, loss = 0.44504199
+Validation score: 0.115624
+Iteration 23, loss = 0.44224219
+Validation score: 0.121084
+Iteration 24, loss = 0.43959551
+Validation score: 0.126297
+Iteration 25, loss = 0.43709133
+Validation score: 0.131281
+Iteration 26, loss = 0.43472437
+Validation score: 0.135952
+Iteration 27, loss = 0.43249418
+Validation score: 0.140360
+Iteration 28, loss = 0.43039556
+Validation score: 0.144507
+Iteration 29, loss = 0.42844475
+Validation score: 0.148331
+Iteration 30, loss = 0.42664515
+Validation score: 0.151849
+Iteration 31, loss = 0.42498469
+Validation score: 0.155052
+Iteration 32, loss = 0.42346851
+Validation score: 0.157997
+Iteration 33, loss = 0.42208288
+Validation score: 0.160639
+Iteration 34, loss = 0.42082817
+Validation score: 0.163043
+Iteration 35, loss = 0.41968942
+Validation score: 0.165155
+Iteration 36, loss = 0.41866687
+Validation score: 0.167073
+Iteration 37, loss = 0.41774214
+Validation score: 0.168801
+Iteration 38, loss = 0.41691010
+Validation score: 0.170316
+Iteration 39, loss = 0.41616267
+Validation score: 0.171717
+Iteration 40, loss = 0.41548730
+Validation score: 0.172940
+Iteration 41, loss = 0.41488134
+Validation score: 0.174041
+Iteration 42, loss = 0.41433613
+Validation score: 0.175042
+Iteration 43, loss = 0.41384446
+Validation score: 0.175930
+Iteration 44, loss = 0.41340055
+Validation score: 0.176733
+Iteration 45, loss = 0.41300127
+Validation score: 0.177447
+Iteration 46, loss = 0.41264104
+Validation score: 0.178113
+Iteration 47, loss = 0.41231703
+Validation score: 0.178696
+Iteration 48, loss = 0.41202420
+Validation score: 0.179215
+Iteration 49, loss = 0.41175531
+Validation score: 0.179710
+Iteration 50, loss = 0.41151474
+Validation score: 0.180138
+Iteration 51, loss = 0.41129353
+Validation score: 0.180541
+Iteration 52, loss = 0.41109410
+Validation score: 0.180895
+Iteration 53, loss = 0.41091251
+Validation score: 0.181214
+Iteration 54, loss = 0.41074223
+Validation score: 0.181511
+Iteration 55, loss = 0.41058899
+Validation score: 0.181743
+Iteration 56, loss = 0.41044996
+Validation score: 0.182040
+Iteration 57, loss = 0.41032089
+Validation score: 0.182262
+Iteration 58, loss = 0.41020008
+Validation score: 0.182453
+Iteration 59, loss = 0.41008978
+Validation score: 0.182668
+Iteration 60, loss = 0.40998660
+Validation score: 0.182830
+Iteration 61, loss = 0.40989104
+Validation score: 0.183014
+Iteration 62, loss = 0.40980137
+Validation score: 0.183131
+Iteration 63, loss = 0.40972238
+Validation score: 0.183314
+Iteration 64, loss = 0.40964411
+Validation score: 0.183447
+Iteration 65, loss = 0.40957349
+Validation score: 0.183572
+Iteration 66, loss = 0.40950625
+Validation score: 0.183689
+Iteration 67, loss = 0.40944069
+Validation score: 0.183800
+Iteration 68, loss = 0.40938304
+Validation score: 0.183914
+Iteration 69, loss = 0.40932735
+Validation score: 0.183994
+Iteration 70, loss = 0.40927194
+Validation score: 0.184112
+Iteration 71, loss = 0.40922450
+Validation score: 0.184188
+Iteration 72, loss = 0.40917673
+Validation score: 0.184275
+Iteration 73, loss = 0.40913124
+Validation score: 0.184343
+Iteration 74, loss = 0.40908693
+Validation score: 0.184415
+Iteration 75, loss = 0.40904885
+Validation score: 0.184499
+Iteration 76, loss = 0.40900836
+Validation score: 0.184577
+Iteration 77, loss = 0.40897030
+Validation score: 0.184648
+Iteration 78, loss = 0.40893731
+Validation score: 0.184691
+Iteration 79, loss = 0.40890384
+Validation score: 0.184752
+Iteration 80, loss = 0.40887368
+Validation score: 0.184808
+Iteration 81, loss = 0.40884276
+Validation score: 0.184848
+Validation score did not improve more than tol=0.000100 for 10 consecutive epochs. Stopping.
+Model fit done.
+0.18529291803749603
+[[0.3028113  0.28681997 0.36799131 0.2465445  0.33757463 0.26745001
+  0.32541098 0.25638579 0.42223789 0.28955805 0.32560829 0.30446047
+  0.23013503 0.35498669 0.40385247 0.42848327 0.35725035 0.33502139
+  0.4298684  0.41271719 0.79372053]
+ [0.25562013 0.29483482 0.29742016 0.30717232 0.30542088 0.30021093
+  0.29855047 0.26805637 0.3496379  0.24590527 0.33260961 0.2270315
+  0.27399875 0.3396319  0.34744266 0.41626264 0.33754457 0.462262
+  0.37479525 0.42244671 0.75298019]]
+[array([[ 1.00232132,  0.94670809],
+       [ 1.334982  , -0.45444523]]), array([[ 0.2964839 ],
+       [-1.24179285]])]
+[0.0541644  0.09374509]
+TRAIN
+Mean PCC: 0.4578719355984632 +- 0.4345618500153736
+PCC: Min: -0.0933499983329938 Max: 0.8657030195785889
+Mean MSE: 0.7975868966739434 +- 0.3926147829415402
+MSE: Min: 0.3492821011712905 Max: 1.3440183081205812
+MSE:
+ArgMin: [('3o2e', 86), ('1tif', 76), ('4o7q', 94), ('2yvi', 89), ('6ekb', 62), ('4hlb', 95), ('2rff', 111), ('2p0h', 118), ('1xmt', 95), ('2hcm', 159)]
+ArgMax: [('4aqo', 86), ('3dt5', 119), ('2pne', 81), ('1jni', 62), ('1j0p', 108), ('2w9y', 136), ('3dv9', 243), ('1sau', 114), ('2zpm', 86), ('4lzh', 278)]
+PCC:
+ArgMin: [('3dt5', 119), ('3qou', 282), ('2h5c', 198), ('4aqo', 86), ('2w9y', 136), ('2pne', 81), ('1lmi', 131), ('2nwf', 141), ('4up5', 85), ('1jni', 62)]
+ArgMax: [('1tif', 76), ('3o2e', 86), ('6ekb', 62), ('2yvi', 89), ('2p0h', 118), ('1xmt', 95), ('4o7q', 94), ('4hlb', 95), ('2rff', 111), ('6c4v', 81)]
+MSE vs Length correlation: 0.04887989381430591
+PCC vs Length correlation: 0.0642627762153899
+MSE vs b-val mean correlation: 2.233140067442463e-05
+PCC vs b-val mean correlation: 2.6038062422850672e-05
+VAL
+Mean PCC: 0.4658662805117023 +- 0.4180301443233366
+PCC: Min: -0.00435439398230613 Max: 0.8426607836599608
+Mean MSE: 0.7899030206312867 +- 0.37402783260028616
+MSE: Min: 0.35796050553415487 Max: 1.2523265257048324
+MSE:
+ArgMin: [('2vc8', 72), ('4i6x', 117), ('3mao', 105), ('5ijm', 98), ('4gos', 115), ('5hqh', 96), ('4zc3', 57), ('4ld6', 117), ('2cxy', 114), ('2i5u', 77)]
+ArgMax: [('2rkn', 77), ('3fgh', 67), ('2rbk', 261), ('1u5p', 211), ('3sw0', 186), ('2v9k', 467), ('3gvo', 342), ('3zt9', 192), ('5hl3', 356), ('4eiu', 242)]
+PCC:
+ArgMin: [('2rbk', 261), ('1u5p', 211), ('2rkn', 77), ('3sw0', 186), ('2v9k', 467), ('3gvo', 342), ('5hfg', 205), ('5hl3', 356), ('4rep', 489), ('2nwh', 307)]
+ArgMax: [('2vc8', 72), ('4i6x', 117), ('3mao', 105), ('5hqh', 96), ('4gos', 115), ('5ijm', 98), ('2q3t', 121), ('3ga4', 156), ('4ld6', 117), ('4zc3', 57)]
+MSE vs Length correlation: 0.06562197663918634
+PCC vs Length correlation: 0.0829789714195941
+MSE vs b-val mean correlation: 0.002406883171003127
+PCC vs b-val mean correlation: 0.0020771647070856325
+TEST
+Mean PCC: 0.45596052063562037 +- 0.4391797251197991
+PCC: Min: -0.11257790837910628 Max: 0.8421605154744639
+Mean MSE: 0.7996173571914036 +- 0.4009976151400726
+MSE: Min: 0.40538865815333147 Max: 1.3758546023210032
+MSE:
+ArgMin: [('2od5', 91), ('5kuj', 95), ('3o70', 55), ('3t7l', 74), ('3chm', 161), ('5ol9', 81), ('1tuk', 67), ('3cp0', 63), ('4eih', 101), ('1od3', 131)]
+ArgMax: [('4npn', 71), ('2o1a', 122), ('4xxt', 221), ('5i8g', 226), ('4gs3', 90), ('2vac', 134), ('4mdw', 147), ('3b6e', 182), ('4qdn', 118), ('3zr8', 65)]
+PCC:
+ArgMin: [('4npn', 71), ('4xxt', 221), ('2o1a', 122), ('5i8g', 226), ('1r5y', 361), ('2vac', 134), ('4gs3', 90), ('4r1b', 282), ('4qdn', 118), ('2xfd', 109)]
+ArgMax: [('2od5', 91), ('5kuj', 95), ('3chm', 161), ('5ol9', 81), ('1mud', 225), ('1tuk', 67), ('3t7l', 74), ('3o70', 55), ('3cp0', 63), ('1od3', 131)]
+MSE vs Length correlation: 0.04175477110866466
+PCC vs Length correlation: 0.049754411602625837
+MSE vs b-val mean correlation: 1.585688904703897e-05
+PCC vs b-val mean correlation: 5.72510112040181e-06
+14
+Input read.
+(540304, 29)
+(540304, 609)
+Converted to numpy array.
+Iteration 1, loss = 0.77599902
+Validation score: -0.451249
+Iteration 2, loss = 0.69153324
+Validation score: -0.295196
+Iteration 3, loss = 0.62024003
+Validation score: -0.174427
+Iteration 4, loss = 0.56724801
+Validation score: -0.088555
+Iteration 5, loss = 0.53079370
+Validation score: -0.032381
+Iteration 6, loss = 0.50785104
+Validation score: 0.000858
+Iteration 7, loss = 0.49476966
+Validation score: 0.018789
+Iteration 8, loss = 0.48758403
+Validation score: 0.028891
+Iteration 9, loss = 0.48316319
+Validation score: 0.035882
+Iteration 10, loss = 0.47976579
+Validation score: 0.041844
+Iteration 11, loss = 0.47676685
+Validation score: 0.047340
+Iteration 12, loss = 0.47398681
+Validation score: 0.052549
+Iteration 13, loss = 0.47135757
+Validation score: 0.057524
+Iteration 14, loss = 0.46884465
+Validation score: 0.062357
+Iteration 15, loss = 0.46640988
+Validation score: 0.067122
+Iteration 16, loss = 0.46401606
+Validation score: 0.071830
+Iteration 17, loss = 0.46162691
+Validation score: 0.076586
+Iteration 18, loss = 0.45922335
+Validation score: 0.081413
+Iteration 19, loss = 0.45677378
+Validation score: 0.086467
+Iteration 20, loss = 0.45426073
+Validation score: 0.091620
+Iteration 21, loss = 0.45172036
+Validation score: 0.096778
+Iteration 22, loss = 0.44917259
+Validation score: 0.101998
+Iteration 23, loss = 0.44661305
+Validation score: 0.107188
+Iteration 24, loss = 0.44407551
+Validation score: 0.112289
+Iteration 25, loss = 0.44159920
+Validation score: 0.117213
+Iteration 26, loss = 0.43921090
+Validation score: 0.121906
+Iteration 27, loss = 0.43692336
+Validation score: 0.126402
+Iteration 28, loss = 0.43475031
+Validation score: 0.130603
+Iteration 29, loss = 0.43272709
+Validation score: 0.134510
+Iteration 30, loss = 0.43084304
+Validation score: 0.138117
+Iteration 31, loss = 0.42910330
+Validation score: 0.141443
+Iteration 32, loss = 0.42750130
+Validation score: 0.144509
+Iteration 33, loss = 0.42604596
+Validation score: 0.147249
+Iteration 34, loss = 0.42472554
+Validation score: 0.149757
+Iteration 35, loss = 0.42353182
+Validation score: 0.152005
+Iteration 36, loss = 0.42244746
+Validation score: 0.154055
+Iteration 37, loss = 0.42147301
+Validation score: 0.155879
+Iteration 38, loss = 0.42059517
+Validation score: 0.157525
+Iteration 39, loss = 0.41980689
+Validation score: 0.158985
+Iteration 40, loss = 0.41909913
+Validation score: 0.160335
+Iteration 41, loss = 0.41846502
+Validation score: 0.161516
+Iteration 42, loss = 0.41789894
+Validation score: 0.162572
+Iteration 43, loss = 0.41739350
+Validation score: 0.163501
+Iteration 44, loss = 0.41694134
+Validation score: 0.164333
+Iteration 45, loss = 0.41653384
+Validation score: 0.165070
+Iteration 46, loss = 0.41616777
+Validation score: 0.165786
+Iteration 47, loss = 0.41583639
+Validation score: 0.166394
+Iteration 48, loss = 0.41553863
+Validation score: 0.166936
+Iteration 49, loss = 0.41527311
+Validation score: 0.167440
+Iteration 50, loss = 0.41503321
+Validation score: 0.167885
+Iteration 51, loss = 0.41481531
+Validation score: 0.168284
+Iteration 52, loss = 0.41461654
+Validation score: 0.168659
+Iteration 53, loss = 0.41443566
+Validation score: 0.168994
+Iteration 54, loss = 0.41427083
+Validation score: 0.169291
+Iteration 55, loss = 0.41412051
+Validation score: 0.169584
+Iteration 56, loss = 0.41398106
+Validation score: 0.169840
+Iteration 57, loss = 0.41385219
+Validation score: 0.170098
+Iteration 58, loss = 0.41373443
+Validation score: 0.170302
+Iteration 59, loss = 0.41362458
+Validation score: 0.170521
+Iteration 60, loss = 0.41352327
+Validation score: 0.170708
+Iteration 61, loss = 0.41342778
+Validation score: 0.170894
+Iteration 62, loss = 0.41333996
+Validation score: 0.171042
+Iteration 63, loss = 0.41325644
+Validation score: 0.171210
+Iteration 64, loss = 0.41317846
+Validation score: 0.171340
+Iteration 65, loss = 0.41310592
+Validation score: 0.171479
+Iteration 66, loss = 0.41303782
+Validation score: 0.171629
+Iteration 67, loss = 0.41297107
+Validation score: 0.171753
+Iteration 68, loss = 0.41290771
+Validation score: 0.171856
+Iteration 69, loss = 0.41284958
+Validation score: 0.171990
+Iteration 70, loss = 0.41279153
+Validation score: 0.172101
+Iteration 71, loss = 0.41273644
+Validation score: 0.172184
+Iteration 72, loss = 0.41268509
+Validation score: 0.172319
+Iteration 73, loss = 0.41263532
+Validation score: 0.172413
+Iteration 74, loss = 0.41258725
+Validation score: 0.172509
+Iteration 75, loss = 0.41254112
+Validation score: 0.172596
+Iteration 76, loss = 0.41249603
+Validation score: 0.172687
+Iteration 77, loss = 0.41245156
+Validation score: 0.172779
+Iteration 78, loss = 0.41240801
+Validation score: 0.172829
+Iteration 79, loss = 0.41236990
+Validation score: 0.172941
+Iteration 80, loss = 0.41232864
+Validation score: 0.173023
+Iteration 81, loss = 0.41228866
+Validation score: 0.173103
+Iteration 82, loss = 0.41225185
+Validation score: 0.173176
+Iteration 83, loss = 0.41221159
+Validation score: 0.173219
+Iteration 84, loss = 0.41217543
+Validation score: 0.173310
+Iteration 85, loss = 0.41214043
+Validation score: 0.173391
+Iteration 86, loss = 0.41210386
+Validation score: 0.173460
+Iteration 87, loss = 0.41206941
+Validation score: 0.173522
+Iteration 88, loss = 0.41203493
+Validation score: 0.173588
+Iteration 89, loss = 0.41199930
+Validation score: 0.173642
+Iteration 90, loss = 0.41196679
+Validation score: 0.173719
+Validation score did not improve more than tol=0.000100 for 10 consecutive epochs. Stopping.
+Model fit done.
+0.1764146682651352
+[[0.33671813 0.3082421  0.37904302 0.38727841 0.4030107  0.36012964
+  0.30505818 0.32143948 0.34583332 0.55850629 0.28902134 0.39095149
+  0.2583107  0.38992276 0.46491475 0.55296505 0.46526826 0.35980404
+  0.42383333 0.59178854 0.42716945]
+ [0.42049338 0.40645615 0.37941183 0.39318518 0.3606738  0.36079483
+  0.35398737 0.27039167 0.44901556 0.45347567 0.26031527 0.3946313
+  0.21693518 0.39024004 0.52722212 0.47313795 0.50923577 0.43724101
+  0.51216067 0.56365013 0.42472313]]
+[array([[-0.8189315 , -0.89517688],
+       [ 0.78357699,  0.62498339]]), array([[-0.58034825],
+       [-0.29844718]])]
+[0.08733992 0.09935861]
+TRAIN
+Mean PCC: 0.4464813988328913 +- 0.4109479304919343
+PCC: Min: -0.08781068452185763 Max: 0.8559368768203889
+Mean MSE: 0.8091315144818633 +- 0.3327124235199315
+MSE: Min: 0.42222447933198193 Max: 1.2513198391066016
+MSE:
+ArgMin: [('1tif', 76), ('3o2e', 86), ('4o7q', 94), ('2yvi', 89), ('6ekb', 62), ('2p0h', 118), ('5oo9', 121), ('1xmt', 95), ('2asc', 65), ('3vvv', 108)]
+ArgMax: [('3dt5', 119), ('4aqo', 86), ('2pne', 81), ('1jni', 62), ('2w9y', 136), ('1j0p', 108), ('1sau', 114), ('3qou', 282), ('1lmi', 131), ('5dbl', 130)]
+PCC:
+ArgMin: [('3dt5', 119), ('2pne', 81), ('1lmi', 131), ('2nwf', 141), ('4aqo', 86), ('2h5c', 198), ('3qou', 282), ('2w9y', 136), ('1jni', 62), ('4up5', 85)]
+ArgMax: [('1tif', 76), ('3o2e', 86), ('2p0h', 118), ('6ekb', 62), ('2yvi', 89), ('4o7q', 94), ('1xmt', 95), ('4rgi', 71), ('5bq1', 209), ('5ig6', 115)]
+MSE vs Length correlation: 0.04851474035797099
+PCC vs Length correlation: 0.05576000341125242
+MSE vs b-val mean correlation: 3.603438597876707e-05
+PCC vs b-val mean correlation: 5.216482105496745e-05
+VAL
+Mean PCC: 0.4549364104415021 +- 0.4014582793740733
+PCC: Min: -0.0011317871700656486 Max: 0.8036947931084027
+Mean MSE: 0.8019559833025728 +- 0.32512326423094934
+MSE: Min: 0.46711653530318864 Max: 1.2456575789160023
+MSE:
+ArgMin: [('4i6x', 117), ('2vc8', 72), ('4gos', 115), ('4ld6', 117), ('2cxy', 114), ('2q3t', 121), ('3mao', 105), ('2i5u', 77), ('3ii2', 150), ('5ijm', 98)]
+ArgMax: [('2rkn', 77), ('2rbk', 261), ('3fgh', 67), ('1u5p', 211), ('3sw0', 186), ('2v9k', 467), ('3gvo', 342), ('3zt9', 192), ('5hfg', 205), ('4rep', 489)]
+PCC:
+ArgMin: [('2rkn', 77), ('2rbk', 261), ('1u5p', 211), ('3sw0', 186), ('2v9k', 467), ('3gvo', 342), ('5hfg', 205), ('3zt9', 192), ('4rep', 489), ('5hl3', 356)]
+ArgMax: [('4i6x', 117), ('2vc8', 72), ('2q3t', 121), ('4ld6', 117), ('4gos', 115), ('3mao', 105), ('3ii2', 150), ('5hqh', 96), ('2cxy', 114), ('3ga4', 156)]
+MSE vs Length correlation: 0.06480790390372049
+PCC vs Length correlation: 0.07439095585660316
+MSE vs b-val mean correlation: 0.002948242778385013
+PCC vs b-val mean correlation: 0.002526566809557651
+TEST
+Mean PCC: 0.44229866458576267 +- 0.4120209497620553
+PCC: Min: -0.13179069196814605 Max: 0.7947844030344905
+Mean MSE: 0.8129141381514867 +- 0.3371147476833749
+MSE: Min: 0.5168945269501011 Max: 1.3377361160335002
+MSE:
+ArgMin: [('2od5', 91), ('3t7l', 74), ('5kuj', 95), ('3o70', 55), ('3chm', 161), ('4bgc', 102), ('3f2z', 149), ('4qb0', 95), ('1tuk', 67), ('5x4m', 131)]
+ArgMax: [('4npn', 71), ('2o1a', 122), ('4xxt', 221), ('5i8g', 226), ('3b6e', 182), ('2vac', 134), ('5mvr', 148), ('4qdn', 118), ('4gs3', 90), ('3zr8', 65)]
+PCC:
+ArgMin: [('4npn', 71), ('4xxt', 221), ('2o1a', 122), ('5i8g', 226), ('2vac', 134), ('1r5y', 361), ('3b6e', 182), ('4qdn', 118), ('4gs3', 90), ('5mvr', 148)]
+ArgMax: [('2od5', 91), ('3chm', 161), ('3cp0', 63), ('3t7l', 74), ('5kuj', 95), ('5x4m', 131), ('1tuk', 67), ('3po8', 98), ('4rwu', 81), ('1mud', 225)]
+MSE vs Length correlation: 0.037319175779798264
+PCC vs Length correlation: 0.03943586974369451
+MSE vs b-val mean correlation: 1.3889566118918673e-05
+PCC vs b-val mean correlation: 5.944024809467763e-06
