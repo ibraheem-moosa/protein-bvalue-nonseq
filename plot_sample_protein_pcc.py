@@ -54,6 +54,7 @@ print(len(pccs))
 print(max(pccs))
 print(min(pccs))
 print(sum(pccs)/len(pccs))
+print(np.std(pccs))
 plt.hist(pccs, bins=16, density=True)
 plt.show()
 

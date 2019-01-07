@@ -93,7 +93,7 @@ def write_preds(indices, protein_list, preds, dirname):
  
 if __name__ == '__main__':
     if len(sys.argv) < 6:
-        print('Usage: python3 linreg.py protein_list input_dir protein_metadata window_size, output_dir')
+        print('Usage: python3 linreg.py protein_list input_dir protein_metadata window_size output_dir bad_protein_list')
         exit()
 
     use_metadata = False
@@ -105,11 +105,17 @@ if __name__ == '__main__':
     protein_metadata = sys.argv[3]
     ws = int(sys.argv[4])
     pred_dir = sys.argv[5]
+    bad_protein_list_fname = sys.argv[6]
     print(ws)
 
     protein_list = []
     with open(protein_list_file) as f:
         protein_list.extend([l.strip() for l in f])
+
+    bad_protein_list = []
+    with open(bad_protein_list_fname) as f:
+        bad_protein_list.extend([l.strip().lower() for l in f])
+
 
     protein_metadata = pd.read_csv(protein_metadata, parse_dates=[1,11], na_values=['.'])
     protein_metadata = protein_metadata.dropna(axis=1, thresh=protein_metadata.shape[0] - 1500)
@@ -140,6 +146,11 @@ if __name__ == '__main__':
     val_indices = train_indices[int(0.8 * len(train_indices)):]
     train_indices = train_indices[:int(0.8 * len(train_indices))]
     test_indices = indices[int(0.8 * len(indices)):]
+
+    bad_protein_indices = [protein_list.index(p) for p in bad_protein_list]
+    train_indices = list(set(train_indices).difference(bad_protein_indices))
+    val_indices = list(set(val_indices).difference(bad_protein_indices))
+    test_indices = list(set(test_indices).difference(bad_protein_indices))
 
     protein_seqs = []
     protein_bvals = []
